@@ -33,7 +33,7 @@ class HomeController extends AbstractController
 
 
     /**
-     * @Route("/user/{id}", methods={"GET"}, name="neon_user")
+     * @Route("/home/user/{id}", methods={"GET"}, name="neon_user")
      */
     public function showProfile($id): Response
     {
