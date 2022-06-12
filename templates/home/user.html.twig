@@ -5,6 +5,7 @@
 {% block body %}
        <div>
           {% if user is defined %}
+           <h3>{{ user.name }}</h3>
            <h3>{{ user.email }}</h3>
            <h3>{{ user.birthday|date('F j,Y, g:i a')  }}</h3>
            <img src="{{ user.profileImg }}" alt="">
