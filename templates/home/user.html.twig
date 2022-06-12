@@ -4,14 +4,10 @@
 
 {% block body %}
        <div>
-           {% for person in users %}
-               <ul>
-                   <li>{{ person.email }}</li>
-                   <li>{{ person.birthday|date('F j Y, g:i a') }}</li>
-               </ul>
-               <img src="{{ person.profileImg }}" class="rounded-circle shadow-4"
-                    style="width: 150px;"
-                    alt="user avatar">
-           {% endfor %}
+          {% if user is defined %}
+           <h3>{{ user.email }}</h3>
+           <h3>{{ user.birthday|date('F j,Y, g:i a')  }}</h3>
+           <img src="{{ user.profileImg }}" alt="">
+           {% endif %}
        </div>
 {% endblock %}

@@ -20,14 +20,31 @@ class HomeController extends AbstractController
         ]);
     }
 
+//    /**
+//     * @Route("/users", name="neon_users")
+//     */
+//    public function showUser(): Response
+//    {
+//        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+//        return $this->render('home/user.html.twig', [
+//            'users' => $users
+//        ]);
+//    }
+
+
     /**
-     * @Route("/users", name="neon_users")
+     * @Route("/user/{id}", methods={"GET"}, name="neon_user")
      */
-    public function showUser(): Response
+    public function showProfile($id): Response
     {
-        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+        $user = $this->getDoctrine()
+            ->getRepository(User::class)
+            ->find($id);
+
         return $this->render('home/user.html.twig', [
-            'users' => $users
+            'user' => $user
         ]);
+
     }
+
 }
