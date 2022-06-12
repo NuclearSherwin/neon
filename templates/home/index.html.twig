@@ -18,6 +18,13 @@
         <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/neon/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
     </ul>
 
-    {{ app.user.email }}
+    {% for person in app.user %}
+    <div>
+        <img src="{{ person.profileImg }}" alt="">
+    </div>
+        <div>
+            {{ person.email }}
+        </div>
+    {% endfor %}
 </div>
 {% endblock %}
