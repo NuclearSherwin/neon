@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+       <div>
+           {% for person in users %}
+               <ul>
+                   <li>{{ person.email }}</li>
+                   <li>{{ person.birthday|date('F j Y, g:i a') }}</li>
+               </ul>
+               <img src="{{ person.profileImg }}" class="rounded-circle shadow-4"
+                    style="width: 150px;"
+                    alt="user avatar">
+           {% endfor %}
+       </div>
+{% endblock %}

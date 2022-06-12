@@ -46,7 +46,7 @@ class RegistrationController extends AbstractController
                     return new Response($e->getMessage());
                 }
 
-                $newUser->setProfileImg('/upload/' . $newFileName);
+                $newUser->setProfileImg('/uploads/' . $newFileName);
             }
 
 
