@@ -23,20 +23,24 @@ class RegistrationFormType extends AbstractType
             ->add('name', TextType::class, [
                 'attr' => array(
                     'placeholder' => 'enter username..'
-                )
+                ),
+                'label' => false
             ])
             ->add('email', TextType::class, [
                 'attr' => array(
                     'placeholder' => 'enter email..'
-                )
+                ),
+                'label' => false
             ])
             ->add('birthday', DateType::class,[
                 'widget' => 'choice',
-                'input'  => 'datetime_immutable'
+                'input'  => 'datetime_immutable',
+                'label' => false
             ])
             ->add('profileImg', FileType::class, array(
                 'required' => false,
-                'mapped' => false
+                'mapped' => false,
+                'label' => false
             ))
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
@@ -45,12 +49,14 @@ class RegistrationFormType extends AbstractType
                         'message' => 'You should agree to our terms.',
                     ]),
                 ],
+                'label' => false
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                'attr' => ['autocomplete' => 'new-password',
+                            'placeholder' => 'enter your password'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
@@ -62,6 +68,7 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
+                'label' => false
             ])
         ;
     }
