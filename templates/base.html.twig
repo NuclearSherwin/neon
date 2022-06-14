@@ -22,25 +22,45 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ path('neon_home') }}">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{ path('neon_home') }}"><i class="fa-solid fa-house"></i><span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="#">About us</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
+                        Options
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Posts</a>
+                        <a class="dropdown-item" href="#">News</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#">Tags</a>
                     </div>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item dropdown">
                    {% if app.user %}
-                    <a class="nav-link" href="{{ path('neon_user', {'id': app.user.id}) }}">My Profile</a>
+                    <a class="nav-link dropdown-toggle" href="{{ path('neon_user', {'id': app.user.id}) }}"
+
+                       data-toggle="dropdown"
+                       id="navbarDropdown"
+                       aria-haspopup="true"
+                       aria-expanded="false"
+                       role="button"
+
+                    ><i class="fa-solid fa-user"></i></a>
+{#                       <a class="nav-link" href="{{ path('neon_user', {'id': app.user.id}) }}" id="navbarDropdown" role="button" data-mdb-toggle="dropdown"#}
+{#                          aria-expanded="false">#}
+{#                           <img src="{{ app.user.profileImg }}" class="rounded-circle img-fluid"#}
+{#                                height="18" width="18" alt="user-avatar" loading="lazy">#}
+{#                       </a>#}
+
+                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                           <a class="dropdown-item" href="{{ path('neon_user', {'id': app.user.id}) }}  ">{{ app.user.name }}</a>
+                           <a class="dropdown-item" href="{{ path('update_user', {'id': app.user.id}) }}">Update your profile</a>
+                           <div class="dropdown-divider"></div>
+                           <a class="dropdown-item" href="#">Logout</a>
+                       </div>
                     {% endif %}
                 </li>
             </ul>
@@ -64,3 +84,6 @@
     </body>
 
 </html>
+
+
+
