@@ -24,30 +24,16 @@ class UsersController extends AbstractController
     /**
      * @Route("/profile/user/{id}", name="update_user")
      */
-    public function updateProfile($id, Request $request): Response
-    {
-        $em = $this->getDoctrine()->getManager();
-        $user = $em->getRepository(User::class)->find($id);
-
-        $form = $this->createForm(UserFromType::class, $user);
-        $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid()){
-            $user->setName($request->request->get('user')['name']);
-            $user->setEmail($request->request->get('user')['email']);
-            $user->setPassword($request->request->get('user')['password']);
-            $user->setProfileImg($request->request->get('user')['profileImg']);
-            $user->setBirthday(\DateTime::createFromFormat('Y-m-d', $request->request->get('todo')['due_date']));
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
-        }
-
-        return $this->render('users/update.html.twig', [
-            'user' => $user,
-            'form' => $form->createView()
-        ]);
-    }
+//    public function updateProfile($id, Request $request): Response
+//    {
+//
+//        $user = $this->getDoctrine()->getRepository(User::class)->find($id);$form = $this->createForm(UserFromType::class)
+//
+//        return $this->render('users/update.html.twig', [
+//          'user' => $user,
+//           'form' => $form->createView()
+//      ]);
+//    }
 
 
 }
