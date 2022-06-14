@@ -4,7 +4,8 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserFormType;
-use App\Form\UserFromType;
+use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,14 +14,26 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UsersController extends AbstractController
 {
+    private $em;
+    private $userRepository;
+
+
+    public function __construct(UserRepository $userRepository, EntityManagerInterface $em)
+    {
+        $this->userRepository = $userRepository;
+        $this->em = $em;
+    }
+
+
+
+
+
     /**
-     * @Route("/user/profile/{id}", methods={"GET"}, name="app_users")
+     * @Route("/user/profile/{id}", methods={"GET"}, name="profile_user")
      */
     public function showUser($id): Response
     {
-        $user = $this->getDoctrine()
-            ->getRepository(User::class)
-            ->find($id);
+        $user = $this->userRepository->find($id);
 
         return $this->render('users/index.html.twig', [
             'user' => $user
@@ -29,13 +42,12 @@ class UsersController extends AbstractController
 
 
     /**
-     * @Route("user/profile/edit/{id}", name="user_update", methods={"GET", "POST"})
+     * @Route("/user/profile/edit/{id}", name="update_user", methods={"GET", "POST"})
      */
-    public function updateProfile($id, Request $request ): Response
+    public function updateProfile($id, Request $request): Response
     {
-        $em = $this->getDoctrine()->getManager();
+        $user = $this->userRepository->find($id);
 
-        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
         $form = $this->createForm(UserFormType::class, $user);
 
         $form->handleRequest($request);
@@ -63,10 +75,11 @@ class UsersController extends AbstractController
                     }
 
                     $user->setProfileImg('/uploads/' . $newFileName);
-                    $em->persist($user);
-                    $em->flush();
 
-                    return $this->redirectToRoute('app_users');
+
+
+                    $this->em->flush();
+                    return $this->redirectToRoute('neon_home');
                 }
             }
 
@@ -75,17 +88,31 @@ class UsersController extends AbstractController
             $user->setEmail($form->get('email')->getData());
             $user->setPassword($form->get('password')->getData());
             $user->setBirthday($form->get('birthday')->getData());
-            $em->persist($user);
-            $em->flush();
-            return $this->redirectToRoute('app_users');
+
+
+            $this->em->flush();
+            return $this->redirectToRoute('neon_home');
 
         }
 
 
-        return $this->render('users/update.html.twig', [
-          'user' => $user,
-           'form' => $form->createView()
-      ]);
+        return $this->render('users/update/html.twig', [
+            'user' => $user,
+            'form' => $form
+        ]);
+    }
+
+    /**
+     * @Route("/user/profile/delete/{id}", methods={"GET", "DELETE"}, name="delete_user")
+     */
+    public function deleteUser($id): Response
+    {
+        $user = $this->userRepository->find($id);
+        $this->em->remove($user);
+        $this->em->flush();
+
+        return $this->redirectToRoute('app_login');
+
     }
 
 

@@ -56,10 +56,12 @@
 {#                       </a>#}
 
                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                           <a class="dropdown-item" href="{{ path('app_users', {'id': app.user.id}) }} ">{{ app.user.name }}</a>
-                           <a class="dropdown-item" href="{{ path('user_update', {'id': app.user.id}) }}">Update your profile</a>
+                           <a class="dropdown-item" href="{{ path('profile_user', {'id': app.user.id}) }} ">{{ app.user.name }}</a>
+                           <a class="dropdown-item" href="{{ path('update_user', {'id': app.user.id}) }}">Update your profile</a>
                            <div class="dropdown-divider"></div>
-                           <a class="dropdown-item" href="#">Logout</a>
+                           <a class="dropdown-item" href="{{ path('app_logout') }}"
+                              onclick="return confirm('Are you sure to logout?');">Log out
+                           </a>
                        </div>
                     {% endif %}
                 </li>

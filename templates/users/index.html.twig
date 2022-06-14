@@ -29,10 +29,17 @@
                                             <i class="fab fa-skype fa-lg"></i>
                                         </button>
                                     </div>
-                                    <a class="btn btn-danger" href="{{ path('app_logout') }}"
+                                    <a class="btn btn-success" href="{{ path('app_logout') }}"
                                        onclick="return confirm('Are you sure to logout?');">Log out
                                     </a>
-                                    <a class="btn btn-warning" href="{{ path('user_update', {'id': user.id}) }}">Update your profile</a>
+
+                                    <a class="btn btn-warning" href="{{ path('update_user', {'id': user.id}) }}">Update your profile</a>
+
+                                    <a class="btn btn-danger" href="{{ path('delete_user', {'id': user.id}) }}"
+
+                                        onclick="return confirm('Are you sure to delete your account')"
+                                        >delete your account
+                                    </a>
                                     {#                                      <div class="d-flex justify-content-between text-center mt-5 mb-2">#}
                                     {#                                          <div>#}
                                     {#                                              <p class="mb-2 h5">8471</p>#}
