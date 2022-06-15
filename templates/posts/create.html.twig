@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <div>
+        <h1>UPLOAD YOUR POST</h1>
+    </div>
+    {{ form_start(form) }}
+    <div class="form-group">
+        <label for="description">Description:</label>
+        {{ form_widget(form.description,{
+            'attr':{
+                'class':'form-control',
+                'placeholder': 'Task name'
+            }
+        }) }}
+    </div>
+    <div class="form-group">
+        <label for="imgPath">:</label>
+        {{ form_widget(form.imgPath,{
+            'attr':{
+                'class':'form-control',
+                'placeholder': 'Category name'
+            }
+        }) }}
+    </div>
+    <div class="form-group">
+        <label for="createAt">:</label>
+        {{ form_widget(form.createAt,{
+            'attr':{
+                'class':'form-control',
+                'placeholder': 'Description'
+            }
+        }) }}
+    </div>
+    <div class="form-group">
+        <label for="User">User:</label>
+        {{ form_widget(form.user,{
+            'attr':{
+                'class':'form-control'
+            }
+        }) }}
+    </div>
+
+{#    <div class="form-group">#}
+{#        <label for="tag">Tag</label>#}
+{#        {{ form_widget(form.tag,{#}
+{#            'attr':{#}
+{#                'class':'form-control'#}
+{#            }#}
+{#        }) }}#}
+{#    </div>#}
+    <input type="submit" name="create_posts" value="Create" class="btn btn-success"/>
+    {{ form_end(form) }}
+{% endblock %}
