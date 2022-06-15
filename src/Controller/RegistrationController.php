@@ -25,7 +25,9 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //create new user
             $newUser = $form->getData();
+
             // encode the plain password
             $user->setPassword(
             $userPasswordHasher->hashPassword(
@@ -33,6 +35,8 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
+
+            // add profile image from device of user
             $profileImg = $form->get('profileImg')->getData();
             if($profileImg) {
                 $newFileName = uniqid() . '.' . $profileImg->guessExtension();
@@ -46,6 +50,7 @@ class RegistrationController extends AbstractController
                     return new Response($e->getMessage());
                 }
 
+                //set file path when received the picture
                 $newUser->setProfileImg('/uploads/' . $newFileName);
             }
 
@@ -54,7 +59,7 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('neon_home');
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('registration/register.html.twig', [
