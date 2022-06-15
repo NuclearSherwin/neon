@@ -8,54 +8,26 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-    <div class="d-flex justify-content-center">
-        <div class="col-lg-6">
-            <div class="central-meta d-flex justify-content-center border-3
-                        mb-20 p-25" style="width: 100%">
-                <div class="new-postbox d-inline-block" style="width: 100%;">
-                    <figure class="d-inline-block mb-0 align-top" style="width: 10.4%">
-                        <img src="images/resources/admin2.jpg" alt="">
-                    </figure>
-                    <div class="newpst-input d-inline-block ml-10 align-top" style="width: 85.5%">
-                        <form method="post" class="d-inline-block" style="width: 100%">
-                            <textarea rows="2" placeholder="write something"
-                                      class="border-1"
-                                      style="width: 100%;"></textarea>
-                            <div class="attachments d-block p-10 text-right">
-                                <ul class="">
-                                    <li class="d-inline-block ml-5">
-                                        <i class="fa fa-music"></i>
-                                        <label class="fileContainer">
-                                            <input type="file">
-                                        </label>
-                                    </li>
-                                    <li class="d-inline-block ml-5">
-                                        <i class="fa fa-image"></i>
-                                        <label class="fileContainer">
-                                            <input type="file">
-                                        </label>
-                                    </li>
-                                    <li class="d-inline-block ml-5">
-                                        <i class="fa fa-video-camera"></i>
-                                        <label class="fileContainer">
-                                            <input type="file">
-                                        </label>
-                                    </li>
-                                    <li class="d-inline-block ml-5">
-                                        <i class="fa fa-camera"></i> ml-5
-                                        <label class="fileContainer">
-                                            <input type="file">
-                                        </label>
-                                    </li>
-                                    <li class="d-inline-block ml-5">
-                                        <button type="submit">Post</button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div><!-- add post new box -->
+    <div>
+{#        display all posts here#}
+        <ul>
+            {% for post in posts %}
+                <li>
+                    {{ post.description }}
+                </li>
+                <li>
+                    {{ post.imgPath }}
+                </li>
+                <li>
+                    {{ post.createAt|date('F j, Y, g:i a') }}
+                </li>
+                <li>
+                    {{ post.user.name }}
+                </li>
+            {% endfor %}
+        </ul>
+        <h2>ALL POSTS</h2>
+
     </div>
 
 {% endblock %}
