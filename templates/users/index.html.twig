@@ -30,15 +30,16 @@
                                         </button>
                                     </div>
                                     <a class="btn btn-success" href="{{ path('app_logout') }}"
-                                       onclick="return confirm('Are you sure to logout?');">Log out
+                                       onclick="return confirm('Are you sure to logout?');"><i class="fa-solid fa-arrow-right-from-bracket"></i>Log out
                                     </a>
 
-                                    <a class="btn btn-warning" href="{{ path('update_user', {'id': user.id}) }}">Update your profile</a>
+                                    <a class="btn btn-warning" href="{{ path('update_user', {'id': user.id}) }}"><i class="fa-solid fa-pen-to-square"></i>Update</a>
 
                                     <a class="btn btn-danger" href="{{ path('delete_user', {'id': user.id}) }}"
 
-                                        onclick="return confirm('Are you sure to delete your account')"
-                                        >delete your account
+                                        onclick="return confirm('Are you sure to delete your account')">
+                                        <i class="fa-solid fa-trash"></i>
+                                        Delete
                                     </a>
                                     {#                                      <div class="d-flex justify-content-between text-center mt-5 mb-2">#}
                                     {#                                          <div>#}
