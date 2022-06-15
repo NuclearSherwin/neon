@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
@@ -32,7 +33,7 @@ class RegistrationFormType extends AbstractType
                 ),
                 'label' => false
             ])
-            ->add('birthday', DateType::class,[
+            ->add('birthday', BirthdayType::class,[
                 'widget' => 'choice',
                 'input'  => 'datetime_immutable',
                 'label' => false
