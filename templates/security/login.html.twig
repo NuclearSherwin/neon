@@ -4,14 +4,14 @@
 
 {% block body %}
     <section class="vh-100">
-        <div class="container-fluid h-custom">
+        <div class="container-fluid h-custom bg-light">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-md-9 col-lg-6 col-xl-5">
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
                          class="img-fluid" alt="Sample image">
                 </div>
-                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                    <form method="post">
+                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 position-relative" style="margin-top: 20px; padding: 35px 20px;">
+                    <form method="post" class="">
                         {% if error %}
                             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                         {% endif %}
@@ -77,8 +77,10 @@
                             {#                                                                                              class="link-danger">Register</a></p>#}
                         </div>
                     </form>
-                    <p>did you forgot your password?<a href="{{ path('app_forgot_password_request') }}">click here to reset</a></p>
-                    <p>You don't have an account?<a href="{{ path('app_register') }}">click here to register</a></p>
+                    <div class="pt-4 pb-4 d-flex justify-content-center">
+                        <p>Forgot your password?<a href="{{ path('app_forgot_password_request') }}">Reset password</a></p>
+                        <p>Don't have an account?<a href="{{ path('app_register') }}">Register</a></p>
+                    </div>
                 </div>
             </div>
         </div>

@@ -99,6 +99,10 @@ class PostsController extends AbstractController
                 }
 
                 $newPost->setImgPath('/uploads/' . $newFileName);
+                $date = new \DateTimeImmutable();
+                $date->format("Y-m-d H:i:s");
+                $currentTime = $date->setTimestamp( strtotime(date("Y-m-d H:i:s")));
+                $newPost->setCreateAt($currentTime);
             }
 
             //save the path of img into your project (/public/uploads/)

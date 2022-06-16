@@ -27,9 +27,7 @@ class PostFormType extends AbstractType
                 'required' => false,
                 'mapped' => false,
             ])
-            ->add('createAt', DateTimeType::class, [
-                'input' => 'datetime_immutable',
-            ])
+
             ->add('user')
         ;
     }
