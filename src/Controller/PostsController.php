@@ -26,6 +26,10 @@ class PostsController extends AbstractController
     }
 
 
+
+
+//    Show all posts
+
     /**
      * @Route("/home/posts", name="neon_posts")
      */
@@ -40,6 +44,12 @@ class PostsController extends AbstractController
     }
 
 
+
+
+
+    //show detail of post
+
+
     /**
      * @Route("/home/posts/detail/{id}", name="detail_post", methods={"GET"})
      */
@@ -52,6 +62,11 @@ class PostsController extends AbstractController
         ]);
     }
 
+
+
+
+
+    // create post function
 
     /**
      * @Route("/home/posts/create", name="create_posts", methods={"GET", "POST"})
@@ -100,6 +115,10 @@ class PostsController extends AbstractController
 
     }
 
+
+
+
+    // update post
 
     /**
      * @Route("/home/posts/update/{id}", name="update_post", methods={"GET", "POST"})
@@ -157,6 +176,10 @@ class PostsController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+
+
+    // delete post
 
     /**
      * @Route("/home/posts/delete/{id}", methods={"GET", "DELETE"}, name="delete_post")
