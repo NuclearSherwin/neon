@@ -1,61 +1,89 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PostsController!{% endblock %}
+{% block title %}All Posts{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
 
-    <div class="d-flex justify-content-center">
-        <div class="col-lg-6">
-            <div class="central-meta d-flex justify-content-center border-3
-                        mb-20 p-25" style="width: 100%">
-                <div class="new-postbox d-inline-block" style="width: 100%;">
-                    <figure class="d-inline-block mb-0 align-top" style="width: 10.4%">
-                        <img src="images/resources/admin2.jpg" alt="">
-                    </figure>
-                    <div class="newpst-input d-inline-block ml-10 align-top" style="width: 85.5%">
-                        <form method="post" class="d-inline-block" style="width: 100%">
-                            <textarea rows="2" placeholder="write something"
-                                      class="border-1"
-                                      style="width: 100%;"></textarea>
-                            <div class="attachments d-block p-10 text-right">
-                                <ul class="">
-                                    <li class="d-inline-block ml-5">
-                                        <i class="fa fa-music"></i>
-                                        <label class="fileContainer">
-                                            <input type="file">
-                                        </label>
-                                    </li>
-                                    <li class="d-inline-block ml-5">
-                                        <i class="fa fa-image"></i>
-                                        <label class="fileContainer">
-                                            <input type="file">
-                                        </label>
-                                    </li>
-                                    <li class="d-inline-block ml-5">
-                                        <i class="fa fa-video-camera"></i>
-                                        <label class="fileContainer">
-                                            <input type="file">
-                                        </label>
-                                    </li>
-                                    <li class="d-inline-block ml-5">
-                                        <i class="fa fa-camera"></i> ml-5
-                                        <label class="fileContainer">
-                                            <input type="file">
-                                        </label>
-                                    </li>
-                                    <li class="d-inline-block ml-5">
-                                        <button type="submit">Post</button>
-                                    </li>
-                                </ul>
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
+    <h4 class="bg-info text-center pt-2 pb-2 text-white">ALL POSTS</h4>
+    {% if app.user %}
+        {% for post in posts %}
+
+            <div class="page-content page-container mx-auto mt-4" id="page-content">
+                <div class="padding">
+                    <div class="row container d-flex justify-content-center mx-auto">
+                        <div class="col-md-6 bg-white rounded">
+                            <div class="box box-widget w-100 bg-white">
+                                <div class="box-header with-border">
+                                    <div class="user-block mt-2">
+                                        <img class="img-circle rounded-circle img-fluid"
+                                             src="{{ post.user.profileImg }}"
+                                             style="width: 50px; height: 50px"
+                                             alt="User Image"> <span class="username"><a href="#" data-abc="true">
+                                        {{ post.user.name }}
+                                    </a></span> <span class="description">
+                                    {{ post.createAt|date('F j, Y, g:i a') }}
+                                </span></div>
+                                    <div class="box-tools d-flex justify-content-end mb-3">
+                                        <a href="{{ path('neon_home') }}" class="btn btn-success ml-1 mr-1 text-white">
+                                            <i class="fa-solid fa-house"></i>
+                                        </a>
+                                        <a href="{{ path('detail_post', {'id': post.id }) }}"
+                                           class="btn btn-info ml-1 mr-1 text-white">
+                                            <i class="fa-solid fa-asterisk"></i>
+                                        </a>
+                                        {#                                <a href="{{ path('create_posts') }}" class="btn btn-primary ml-1 mr-1 text-white"> #}
+                                        {#                                    <i class="fa-solid fa-circle-plus"></i> #}
+                                        {#                                </a> #}
+                                        {#                                <a href="" class="btn btn-warning ml-1 mr-1 text-white"> #}
+                                        {#                                    <i class="fa-solid fa-pen-to-square"></i> #}
+{#                                        #}{#                                </a> #}
+
+{#                                        <a href="{{ path('delete_post', {'id': post.id }) }}"#}
+{#                                           class="btn btn-danger ml-1 mr-1 text-white"#}
+{#                                           onclick="return confirm('Are you sure to delete this post')">#}
+{#                                            <i class="fa-solid fa-trash"></i>#}
+{#                                        </a>#}
+                                    </div>
+                                </div>
+                                <div class="box-body">
+                                    <p>{{ post.description }}</p>
+                                    <img class="img-responsive w-100 mt-2 mb-3" src="{{ post.imgPath }}" alt="Photo">
+                                    <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i>
+                                        Share
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-xs"><i
+                                                class="fa fa-thumbs-o-up"></i> Like
+                                    </button>
+                                    <span class="pull-right text-muted">127 likes - 3 comments</span>
+                                </div>
+                                <div class="box-footer box-comments mt-4 mb-4">
+                                </div>
+                                <div class="box-footer mt-4 mb-4">
+                                    <form action="#" method="post"><img class="img-responsive img-circle img-sm"
+                                                                        src="https://img.icons8.com/color/36/000000/administrator-male.png"
+                                                                        alt="Alt Text">
+                                        <div class="img-push"><input type="text" class="form-control input-sm"
+                                                                     placeholder="Press enter to post comment"></div>
+                                    </form>
+                                </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
-            </div><!-- add post new box -->
-    </div>
-
+            </div>
+        {% endfor %}
+    {% endif %}
 {% endblock %}
+
