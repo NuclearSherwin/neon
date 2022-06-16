@@ -158,6 +158,18 @@ class PostsController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/home/posts/delete/{id}", methods={"GET", "DELETE"}, name="delete_post")
+     */
+    public function deletePost($id) : Response
+    {
+        $post = $this->postRepository->find($id);
+        $this->em->remove($post);
+        $this->em->flush();
+
+        return $this->redirectToRoute('neon_posts');
+    }
+
 }
 
 
