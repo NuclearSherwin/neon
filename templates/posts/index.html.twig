@@ -3,63 +3,84 @@
 {% block title %}All Posts{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
     <h4 class="bg-info text-center pt-2 pb-2 text-white">ALL POSTS</h4>
     {% if app.user %}
-    {% for post in posts %}
+        {% for post in posts %}
 
-    <div class="page-content page-container mx-auto mt-4" id="page-content">
-        <div class="padding">
-            <div class="row container d-flex justify-content-center mx-auto">
-                <div class="col-md-6 bg-white rounded">
-                    <div class="box box-widget w-100 bg-white">
-                        <div class="box-header with-border">
-                            <div class="user-block mt-2">
-                                <img class="img-circle rounded-circle img-fluid" src="{{ app.user.profileImg }}"
-                                     style="width: 50px; height: 50px"
-                                     alt="User Image"> <span class="username"><a href="#" data-abc="true">
+            <div class="page-content page-container mx-auto mt-4" id="page-content">
+                <div class="padding">
+                    <div class="row container d-flex justify-content-center mx-auto">
+                        <div class="col-md-6 bg-white rounded">
+                            <div class="box box-widget w-100 bg-white">
+                                <div class="box-header with-border">
+                                    <div class="user-block mt-2">
+                                        <img class="img-circle rounded-circle img-fluid"
+                                             src="{{ post.user.profileImg }}"
+                                             style="width: 50px; height: 50px"
+                                             alt="User Image"> <span class="username"><a href="#" data-abc="true">
                                         {{ post.user.name }}
                                     </a></span> <span class="description">
                                     {{ post.createAt|date('F j, Y, g:i a') }}
-                                </span> </div>
-                            <div class="box-tools d-flex justify-content-end mb-3">
-                                <a href="{{ path('neon_home') }}" class="btn btn-success ml-1 mr-1 text-white">
-                                    <i class="fa-solid fa-house"></i>
-                                </a>
-                                <a href="{{ path('create_posts') }}" class="btn btn-primary ml-1 mr-1 text-white">
-                                    <i class="fa-solid fa-circle-plus"></i>
-                                </a>
-                                <a href="" class="btn btn-warning ml-1 mr-1 text-white">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </a>
-                                <a href="" class="btn btn-danger ml-1 mr-1 text-white">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a>
-                            </div> text-white
+                                </span></div>
+                                    <div class="box-tools d-flex justify-content-end mb-3">
+                                        <a href="{{ path('neon_home') }}" class="btn btn-success ml-1 mr-1 text-white">
+                                            <i class="fa-solid fa-house"></i>
+                                        </a>
+                                        <a href="{{ path('detail_post', {'id': post.id }) }}"
+                                           class="btn btn-info ml-1 mr-1 text-white">
+                                            <i class="fa-solid fa-asterisk"></i>
+                                        </a>
+                                        {#                                <a href="{{ path('create_posts') }}" class="btn btn-primary ml-1 mr-1 text-white"> #}
+                                        {#                                    <i class="fa-solid fa-circle-plus"></i> #}
+                                        {#                                </a> #}
+                                        {#                                <a href="" class="btn btn-warning ml-1 mr-1 text-white"> #}
+                                        {#                                    <i class="fa-solid fa-pen-to-square"></i> #}
+                                        {#                                </a> #}
+                                        {#                                <a href="" class="btn btn-danger ml-1 mr-1 text-white"> #}
+                                        {#                                    <i class="fa-solid fa-trash"></i> #}
+                                        {#                                </a> #}
+                                    </div>
+                                </div>
+                                <div class="box-body">
+                                    <p>{{ post.description }}</p>
+                                    <img class="img-responsive w-100 mt-2 mb-3" src="{{ post.imgPath }}" alt="Photo">
+                                    <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i>
+                                        Share
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-xs"><i
+                                                class="fa fa-thumbs-o-up"></i> Like
+                                    </button>
+                                    <span class="pull-right text-muted">127 likes - 3 comments</span>
+                                </div>
+                                <div class="box-footer box-comments mt-4 mb-4">
+                                </div>
+                                <div class="box-footer mt-4 mb-4">
+                                    <form action="#" method="post"><img class="img-responsive img-circle img-sm"
+                                                                        src="https://img.icons8.com/color/36/000000/administrator-male.png"
+                                                                        alt="Alt Text">
+                                        <div class="img-push"><input type="text" class="form-control input-sm"
+                                                                     placeholder="Press enter to post comment"></div>
+                                    </form>
+                                </div>
                             </div>
-                        <div class="box-body">
-                            <p>{{ post.description }}</p>
-                            <img class="img-responsive w-100 mt-2 mb-3" src="{{ post.imgPath }}" alt="Photo">
-                            <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
-                            <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
-                            <span class="pull-right text-muted">127 likes - 3 comments</span>
-                        </div>
-                        <div class="box-footer box-comments mt-4 mb-4">
-                        </div>
-                        <div class="box-footer mt-4 mb-4">
-                            <form action="#" method="post"> <img class="img-responsive img-circle img-sm" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="Alt Text">
-                                <div class="img-push"> <input type="text" class="form-control input-sm" placeholder="Press enter to post comment"> </div>
-                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    {% endfor %}
+        {% endfor %}
     {% endif %}
 {% endblock %}
 

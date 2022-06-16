@@ -40,6 +40,18 @@ class PostsController extends AbstractController
     }
 
 
+    /**
+     * @Route("/home/posts/detail/{id}", name="detail_post", methods={"GET"})
+     */
+    public function showDetail($id): Response
+    {
+        $post = $this->postRepository->find($id);
+
+        return $this->render('posts/detail.html.twig', [
+            'post' => $post
+        ]);
+    }
+
 
     /**
      * @Route("/home/posts/create", name="create_posts", methods={"GET", "POST"})
@@ -74,11 +86,11 @@ class PostsController extends AbstractController
                 $newPost->setImgPath('/uploads/' . $newFileName);
             }
 
-                //save the path of img into your project (/public/uploads/)
-                $this->em->persist($newPost);
-                $this->em->flush();
+            //save the path of img into your project (/public/uploads/)
+            $this->em->persist($newPost);
+            $this->em->flush();
 
-                return $this->redirectToRoute('neon_posts');
+            return $this->redirectToRoute('neon_posts');
         }
 
 
@@ -87,6 +99,65 @@ class PostsController extends AbstractController
         ]);
 
     }
+
+
+    /**
+     * @Route("/home/posts/update/{id}", name="update_post", methods={"GET", "POST"})
+     */
+    public function updatePost($id, Request $request): Response
+    {
+        $post = $this->postRepository->find($id);
+        $form = $this->createForm(PostFormType::class, $post);
+
+        $form->handleRequest($request);
+
+        //for picture edit
+        $imgPath = $form->get('imgPath')->getData();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if ($imgPath) {
+                // checking whether image input is not null
+                if ($post->getImgPath() !== null) {
+                    if (file_exists($this->getParameter('kernel.project_dir')
+                        . $post->getImgPath())) {
+                        $this->getParameter('kernel.project_dir') . $post->getImgPath();
+                    }
+
+
+                    //making the dot at the end of string when we input the picture into
+                    $newFileName = uniqid() . '.' . $imgPath->guessExtension();
+
+
+                    //trying to get the picture into public
+                    try {
+                        $imgPath->move($this->getParameter('kernel.project_dir') . '/public/uploads',
+                            $newFileName);
+                    } catch (FileException $e) {
+                        return new Response($e->getMessage());
+                    }
+
+                    //final set imgPath for picture with new file name
+                    $post->setImgPath('/uploads/' . $newFileName);
+                    $this->em->flush();
+
+                    return $this->redirectToRoute('neon_posts');
+                }
+            } else {
+                //set the rest of properties
+                $post->setDescription($form->get('description')->getData());
+
+                $this->em->flush();
+                return $this->redirectToRoute('neon_posts');
+            }
+        }
+
+
+        return $this->render('posts/update.html.twig', [
+            'post' => $post,
+            'form' => $form->createView()
+        ]);
+    }
+
 }
 
 
