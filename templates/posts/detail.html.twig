@@ -21,7 +21,7 @@
             background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(5, 25, 54, 1) 34%, rgba(0, 212, 255, 1) 100%) !important;
         }
     </style>
-    <h4 class="bg-info text-center pt-2 pb-2 text-white">ALL POSTS</h4>
+    <h4 class="bg-info text-center pt-2 pb-2 text-white">POSTS DETAIL</h4>
     {% if app.user %}
         <div class="page-content page-container mx-auto mt-4" id="page-content">
             <div class="padding">
@@ -45,20 +45,28 @@
                                     <a href="{{ path('neon_home') }}" class="btn btn-success ml-1 mr-1 text-white">
                                         <i class="fa-solid fa-house"></i>
                                     </a>
-                                    <a href="{{ path('create_posts') }}"
-                                       class="btn btn-primary ml-1 mr-1 text-white">
-                                        <i class="fa-solid fa-circle-plus"></i>
-                                    </a>
-                                    <a href="{{ path('update_post', {'id': post.id }) }}"
-                                       class="btn btn-warning ml-1 mr-1 text-white">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
 
-                                    <a href="{{ path('delete_post', {'id': post.id }) }}"
-                                       class="btn btn-danger ml-1 mr-1 text-white"
-                                       onclick="return confirm('Are you sure to delete this post')">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </a>
+                                    {% if app.user %}
+                                        <a href="{{ path('create_post') }}"
+                                           class="btn btn-primary ml-1 mr-1 text-white">
+                                            <i class="fa-solid fa-circle-plus"></i>
+                                        </a>
+                                    {% endif %}
+
+                                    {#  check if id of user already login equal to user who create this post,
+                                    can delete and update this post #}
+
+                                    {% if app.user.id == post.user.id %}
+                                        <a href="{{ path('update_post', {'id': post.id }) }}"
+                                           class="btn btn-warning ml-1 mr-1 text-white">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <a href="{{ path('delete_post', {'id': post.id }) }}"
+                                           class="btn btn-danger ml-1 mr-1 text-white"
+                                           onclick="return confirm('Are you sure to delete this post')">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </a>
+                                    {% endif %}
                                 </div>
                             </div>
                             <div class="box-body">

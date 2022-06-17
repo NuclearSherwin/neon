@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Post;
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,10 +16,17 @@ class HomeController extends AbstractController
      */
     public function index(): Response
     {
+
+        // fetching all data from post table to display in home
+        $posts = $this->getDoctrine()->getRepository(Post::class)
+            ->findAll();
+
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
+            'posts' => $posts,
         ]);
     }
+
+
 
 //    /**
 //     * @Route("/users", name="neon_users")

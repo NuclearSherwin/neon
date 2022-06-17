@@ -48,8 +48,6 @@ class PostsController extends AbstractController
 
 
     //show detail of post
-
-
     /**
      * @Route("/home/posts/detail/{id}", name="detail_post", methods={"GET"})
      */
@@ -63,13 +61,10 @@ class PostsController extends AbstractController
     }
 
 
-
-
-
     // create post function
 
     /**
-     * @Route("/home/posts/create", name="create_posts", methods={"GET", "POST"})
+     * @Route("/home/posts/create", name="create_post", methods={"GET", "POST"})
      */
     public function createPost(Request $request): Response
     {
@@ -99,6 +94,10 @@ class PostsController extends AbstractController
                 }
 
                 $newPost->setImgPath('/uploads/' . $newFileName);
+                $date = new \DateTimeImmutable();
+                $date->format("Y-m-d H:i:s");
+                $currentTime = $date->setTimestamp( strtotime(date("Y-m-d H:i:s")));
+                $newPost->setCreateAt($currentTime);
             }
 
             //save the path of img into your project (/public/uploads/)

@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -52,7 +53,24 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => false
             ])
-                ->add('plainPassword', PasswordType::class, [
+                ->add('plainPassword', RepeatedType::class, [
+                    'type' => PasswordType::class,
+
+                    'first_options' => [
+                        'attr' => [
+                            'placeholder' => 'enter password',
+                        ],
+                        'label' => false,
+                    ],
+
+                    'second_options' => [
+                        'attr' => [
+                            'placeholder' => 'confirm password',
+                        ],
+                        'label' => false,
+                    ],
+
+
                     // instead of being set onto the object directly,
                     // this is read and encoded in the controller
                     'mapped' => false,
