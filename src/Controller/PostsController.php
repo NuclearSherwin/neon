@@ -48,8 +48,6 @@ class PostsController extends AbstractController
 
 
     //show detail of post
-
-
     /**
      * @Route("/home/posts/detail/{id}", name="detail_post", methods={"GET"})
      */
@@ -61,9 +59,6 @@ class PostsController extends AbstractController
             'post' => $post
         ]);
     }
-
-
-
 
 
     // create post function

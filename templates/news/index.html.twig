@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} News {% endblock %}
+
+{% block body %}
+
+    {% if app.user %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Img</th>
+                <th scope="col">Create_at</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for new in news %}
+                <tr>
+                    <th scope="row">{{ new.id }}</th>
+                    <td>{{ new.Title }}</td>
+                    <td>{{ new.Description }}</td>
+                    <td>{{ new.ImgPath }}</td>
+                    <td>{{ new.CreateAt|date('F j, Y, g:i a') }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+{% endblock %}
