@@ -25,36 +25,18 @@ class NewsController extends AbstractController
     }
 
 
+   // show detail of news
 
+    /**
+     * @Route("/home/news/detail/{id}", name="detail_news", methods={"GET"})
+     */
+    public function showDetail($id): Response
+    {
+        $news = $this->newsRepository->find($id);
 
-//   Show all news
-
-//    /**
-//     * @Route("/home/news", name="neon_news")
-//     */
-//    public function index(): Response
-//    {
-//
-//        $news = $this->newsRepository->findAll();
-//
-//        return $this->render('news/index.html.twig', [
-//            'news' => $news,
-//        ]);
-//    }
-
-
-    //show detail of news
-
-//    /**
-//     * @Route("/home/news/detail/{id}", name="detail_news", methods={"GET"})
-//     */
-//    public function showDetail($id): Response
-//    {
-//        $news = $this->newsRepository->find($id);
-//
-//        return $this->render('news/detail.html.twig', [
-//            'news' => $news
-//        ]);
-//    }
+        return $this->render('news/detail.html.twig', [
+            'news' => $news
+        ]);
+    }
 
 }
