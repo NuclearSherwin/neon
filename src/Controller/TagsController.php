@@ -30,7 +30,7 @@ class TagsController extends AbstractController
 
 
     /**
-     * @Route("home/tags", name="app_tags")
+     * @Route("home/tags", name="neon_tags")
      */
     public function listNews(): Response
     {
