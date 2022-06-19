@@ -3,19 +3,26 @@
 namespace App\Controller;
 
 use App\Entity\Tag;
+use App\Form\PostFormType;
+use App\Repository\TagRepository;
+
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+
 use Symfony\Component\Routing\Annotation\Route;
 
 class TagsController extends AbstractController
 {
-//    private $em;
-//    private $postResponsitory;
-//    public function __construct(EntityManagerInterface $em, TagRepository $tagRepository)
-//    {
-//        $this->em = $em;
-//        $this->TagRepository = $tagRepository;
-//    }
+    private $em;
+    private $tagResponsitory;
+    public function __construct(EntityManagerInterface $em, TagRepository $tagRepository)
+    {
+        $this->em = $em;
+        $this->tagResponsitory = $tagRepository;
+    }
 
 
 //    /**
@@ -35,8 +42,7 @@ class TagsController extends AbstractController
     public function listNews(): Response
     {
 
-        $tags = $this->getDoctrine()->getManager()->getRepository(Tag::class)
-            ->findAll();
+        $tags = $this->tagResponsitory->findAll();
 
         return $this->render('tags/index.html.twig', [
             'tags' => $tags,
