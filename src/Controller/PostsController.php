@@ -79,6 +79,7 @@ class PostsController extends AbstractController
             $newPost = $form->getData();
             $imgPath = $form->get('imgPath')->getData();
             if ($imgPath) {
+
                 // identifier the dot at the end of the picture
                 $newFileName = uniqid() . '.' . $imgPath->guessExtension();
 
@@ -94,10 +95,19 @@ class PostsController extends AbstractController
                 }
 
                 $newPost->setImgPath('/uploads/' . $newFileName);
+
+                // set the current time for upload a post
                 $date = new \DateTimeImmutable();
                 $date->format("Y-m-d H:i:s");
                 $currentTime = $date->setTimestamp( strtotime(date("Y-m-d H:i:s")));
+
                 $newPost->setCreateAt($currentTime);
+
+
+                // when user create a post it will take the id
+                // of current user are posting.
+                $newPost->setUser($this->getUser());
+
             }
 
             //save the path of img into your project (/public/uploads/)

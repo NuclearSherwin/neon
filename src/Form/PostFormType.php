@@ -27,8 +27,6 @@ class PostFormType extends AbstractType
                 'required' => false,
                 'mapped' => false,
             ])
-
-            ->add('user')
         ;
     }
 

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Tags {% endblock %}
+
+{% block body %}
+
+    {% if app.user %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Tag</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for tag in tags %}
+                <tr>
+                    <th scope="row">{{ tag.id }}</th>
+                    <th scope="row">{{ tag.name }}</th>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+{% endblock %}
