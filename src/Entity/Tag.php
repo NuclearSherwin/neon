@@ -22,6 +22,11 @@ class Tag
      */
     private $name;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $descriptions;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -35,6 +40,18 @@ class Tag
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getDescriptions(): ?string
+    {
+        return $this->descriptions;
+    }
+
+    public function setDescriptions(?string $descriptions): self
+    {
+        $this->descriptions = $descriptions;
 
         return $this;
     }
