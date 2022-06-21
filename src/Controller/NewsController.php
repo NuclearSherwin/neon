@@ -54,6 +54,14 @@ class NewsController extends AbstractController
         $Cnews = new News();
         $form = $this->createForm(NewsType::class, $Cnews);
         $form->handleRequest($request);
+        // if press submit putting data to database
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($Cnews);
+            $em->flush();
+
+            $this-> addFlash('notice','Submitted Successfully ');
+        }
         return $this->render('news/create.html.twig', [
             'form' => $form->createView()
         ]);
