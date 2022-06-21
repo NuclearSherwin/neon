@@ -1,69 +1,12 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-
-    {% if app.user %}
-        <h4 class="bg-info text-center pt-2 pb-2 text-white">UPLOAD A NEWS</h4>
-        <div class="page-content page-container mx-auto mt-4" id="page-content">
-            <div class="padding">
-                <div class="row container d-flex justify-content-center mx-auto">
-                    <div class="col-md-6 bg-white rounded">
-                        <div class="box box-widget w-100 bg-white">
-                            {{ form_start(form) }}
-                            <div class="box-header with-border">
-                                <div class="user-block mt-2">
-                                    <img class="img-circle rounded-circle img-fluid" src="{{ app.user.imgpath }}"
-                                         style="width: 50px; height: 50px"
-                                         alt="User Image"> <span class="username"><a href="#" data-abc="true">
-                                        {{ app.user.title }}
-                                    </a></span> <span class="description">
-                                </span></div>
-                                <div class="box-tools d-flex justify-content-end mb-3">
-                                    <a href="{{ path('neon_home') }}" class="btn btn-success ml-1 mr-1 text-white">
-                                        <i class="fa-solid fa-house"></i>
-                                    </a>
-                                    <a href="{{ path('create_news') }}" class="btn btn-primary ml-1 mr-1 text-white">
-                                        <i class="fa-solid fa-upload"></i>
-                                    </a>
-                                    {#                                    <a href="" class="btn btn-warning ml-1 mr-1 text-white"> #}
-                                    {#                                        <i class="fa-solid fa-pen-to-square"></i> #}
-                                    {#                                    </a> #}
-                                    {#                                    <a href="" class="btn btn-danger ml-1 mr-1 text-white"> #}
-                                    {#                                        <i class="fa-solid fa-trash"></i> #}
-                                    {#                                    </a> #}
-                                </div>
-                            </div>
-                            <div class="box-body">
-                                {{ form_widget(form.description,{
-                                    'attr':{
-                                        'class':'form-control',
-                                        'placeholder': 'What on your mind to day?'
-                                    }
-                                }) }}
-                                {{ form_widget(form.imgPath,{
-                                    'attr':{
-                                        'class':'form-control',
-                                        'placeholder': 'Import your picture here'
-                                    }
-                                }) }}
-                                <div class="form-group">
-                                    <label for="User">User:</label>
-                                    {{ form_widget(form.user,{
-                                        'attr':{
-                                            'class':'form-control'
-                                        }
-                                    }) }}
-
-                                </div>
-                            </div>
-                            <div class="box-footer mt-4 mb-4">
-                                <input type="submit" name="create_news" value="NEWS" class="btn btn-success"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{ form_end(form) }}
-    {% endif %}
+ <div class="container">
+     <div class="row">
+         <h3 class="mt-5 mb-5">Create Form</h3>
+         <div class="col-md-6 offset-md-3"></div>
+         {{ form_start(form) }}
+         {{ form (form) }}
+         {{ form_end(form) }}
+     </div>
+ </div>
 {% endblock %}
-

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\News;
 use App\Entity\Post;
+use App\Form\NewsType;
 use App\Form\PostFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -21,7 +22,7 @@ class NewsController extends AbstractController
     {
 
         $news = $this->getDoctrine()->getManager()->getRepository(News::class)
-        ->findAll();
+            ->findAll();
 
         return $this->render('news/index.html.twig', [
             'news' => $news,
@@ -29,7 +30,8 @@ class NewsController extends AbstractController
     }
 
 
-   // show detail of news
+    // show detail of news
+
     /**
      * @Route("/home/news/detail/{id}", name="detail_news", methods={"GET"})
      */
@@ -45,54 +47,15 @@ class NewsController extends AbstractController
     // create newws function
 
     /**
-     * @Route("/home/news/create", name="create_news", methods={"GET", "POST"})
+     * @Route("/home/news/create", name="news_create", methods={"GET","POST"})
      */
-    public function createNews(Request $request): Response
+    public function create(Request $request)
     {
-        //create Object
-        $news = new news();
-        $form = $this->createForm(NewsFormType::class, $news);
-
+        $Cnews = new News();
+        $form = $this->createForm(NewsType::class, $Cnews);
         $form->handleRequest($request);
-
-        //validation submit for News
-        if ($form->isSubmitted() && $form->isValid()) {
-            $newNews = $form->getData();
-            $imgpath = $form->get('imgPath')->getData();
-            if ($imgpath) {
-                // identifier the dot at the end of the picture
-                $newFileName = uniqid() . '.' . $imgpath->guessExtension();
-
-                try {
-                    $imgpath->move(
-                    //kernel will set up bundles used by the application and provide them with app's configurations
-                        $this->getParameter('kernel.project_dir') . '/public/uploads',
-                        $newFileName
-                    );
-                } catch (FileException $e) {
-                    return new Response($e->getMessage());
-
-                }
-
-                $newNews->setImgPath('/uploads/' . $newFileName);
-                $date = new \DateTimeImmutable();
-                $date->format("Y-m-d H:i:s");
-                $currentTime = $date->setTimestamp( strtotime(date("Y-m-d H:i:s")));
-                $newNews->setCreateAt($currentTime);
-            }
-
-            //save the path of img into your project (/public/uploads/)
-            $this->em->persist($newNews);
-            $this->em->flush();
-
-            return $this->redirectToRoute('neon_News');
-        }
-
-
-        return $this->render('News/create.html.twig', [
+        return $this->render('news/create.html.twig', [
             'form' => $form->createView()
         ]);
-
     }
-
 }
