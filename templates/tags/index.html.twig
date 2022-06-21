@@ -9,16 +9,19 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Tag</th>
-
+                <th scope="col">Name</th>
+                <th scope="col">description</th>
+                <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
             {% for tag in tags %}
                 <tr>
+
                     <th scope="row">{{ tag.id }}</th>
                     <th scope="row">{{ tag.name }}</th>
-
+                    <th scope="row">{{ tag.descriptions }}</th>
+                    <th scope="row"><a href="{{ path('detail_tag',{'id': tag.id}) }}">Detail</a></th>
                 </tr>
             {% endfor %}
             </tbody>
