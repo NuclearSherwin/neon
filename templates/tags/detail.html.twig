@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <a href="{{ path('neon_tags') }}" class="btn btn-default">Back to tag List</a>
+
+    <hr/>
+    <h2 class="page-header">{{ tag.name }}</h2>
+    <ul class="list-group">
+        <li class="list-group-item">Tag: <strong> {{ tag.descriptions }}</strong></li>
+    </ul>
+{% endblock %}
