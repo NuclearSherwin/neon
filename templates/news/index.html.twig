@@ -44,22 +44,12 @@
                                                class="btn btn-primary ml-1 mr-1 text-white">
                                                 <i class="fa-solid fa-circle-plus"></i>
                                             </a>
+                                            <a href="{{ path('news_update', {'id': new.id }) }}"
+                                                class="btn btn-info">
+                                                Update
+                                            </a>
                                         {% endif %}
 
-                                        {#  check if id of user already login equal to user who create this news,
-                                    they can delete and update this news #}
-
-                                        {#                                    {% if app.user.id == news.user.id %}#}
-                                        {#                                        <a href="{{ path('update_news', {'id': news.id }) }}"#}
-                                        {#                                           class="btn btn-warning ml-1 mr-1 text-white">#}
-                                        {#                                            <i class="fa-solid fa-pen-to-square"></i>#}
-                                        {#                                        </a>#}
-                                        {#                                        <a href="{{ path('delete_news', {'id': news.id }) }}"#}
-                                        {#                                           class="btn btn-danger ml-1 mr-1 text-white"#}
-                                        {#                                           onclick="return confirm('Are you sure to delete this post')">#}
-                                        {#                                            <i class="fa-solid fa-trash"></i>#}
-                                        {#                                        </a>#}
-                                        {#                                    {% endif %}#}
                                     </div>
                                 </div>
                                 <div class="box-body">
