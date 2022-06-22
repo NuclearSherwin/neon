@@ -61,6 +61,9 @@ class NewsController extends AbstractController
             $em->flush();
 
             $this-> addFlash('notice','Submitted Successfully ');
+
+            //backe to news page then create a news successfully
+            return $this->redirectToRoute('neon_news');
         }
         return $this->render('news/create.html.twig', [
             'form' => $form->createView()
