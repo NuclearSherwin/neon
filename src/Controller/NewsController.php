@@ -76,7 +76,7 @@ class NewsController extends AbstractController
      */
     public function update(Request $request, $id)
     {
-        $Dnews = $this->getDoctrine()-getRepository(NewsType::class)->find($id);
+        $Dnews = $this->getDoctrine()-getRepository(News::class)->find($id);
         $form = $this->createForm(NewsType::class, $Dnews);
         $form->handleRequest($request);
         // if press submit putting data to database
@@ -93,5 +93,20 @@ class NewsController extends AbstractController
         return $this->render('news/update.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    //delete function
+
+    /**
+     * @Route("/home/news/delete/{$id}", name="news_delete", methods={"GET"})
+     */
+    public function delete($id){
+        $Denews = $this->getDoctrine()->getRepository(News::class)->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($Denews);
+        $em->flush();
+
+        $this->addFlash('notice','Delete Successfully ');
+        return $this->redirectToRoute('neon_news');
     }
 }

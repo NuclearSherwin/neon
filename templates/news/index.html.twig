@@ -1,32 +1,94 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} News {% endblock %}
+{% block title %}News detail{% endblock %}
 
 {% block body %}
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
 
-    {% if app.user %}
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Title</th>
-                <th scope="col">Description</th>
-                <th scope="col">Img</th>
-                <th scope="col">Create_at</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for new in news %}
-                <tr>
-                    <th scope="row">{{ new.id }}</th>
-                    <td>{{ new.Title }}</td>
-                    <td>{{ new.Description }}</td>
-                    <td>{{ new.ImgPath }}</td>
-                    <td>{{ new.CreateAt|date('F j, Y, g:i a') }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    {% endif %}
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
 
+        body {
+            background: rgb(2, 0, 36);
+            background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(5, 25, 54, 1) 34%, rgba(0, 212, 255, 1) 100%) !important;
+        }
+    </style>
+    <h4 class="bg-info text-center pt-2 pb-2 text-white">ALL NEWS</h4>
+    {% for new in news  %}
+        {% if app.user %}
+            <div class="page-content page-container mx-auto mt-4" id="page-content">
+                <div class="padding">
+                    <div class="row container d-flex justify-content-center mx-auto">
+                        <div class="col-md-6 bg-white rounded">
+                            <div class="box box-widget w-100 bg-white">
+                                <div class="box-header with-border">
+                                    <div class="user-block mt-2">
+                                        </span> <span class="description">
+                                </span></div>
+                                    {#                                <p><i class="text-success">at</i> {{ news.createat|date('F j, Y, g:i a') }}</p>#}
+                                    <div class="box-tools d-flex justify-content-end mb-3">
+                                        <a href="{{ path('neon_home') }}" class="btn btn-success ml-1 mr-1 text-white">
+                                            <i class="fa-solid fa-house"></i>
+                                        </a>
+
+                                        {% if app.user %}
+                                            <a href="{{ path('news_create') }}"
+                                               class="btn btn-primary ml-1 mr-1 text-white">
+                                                <i class="fa-solid fa-circle-plus"></i>
+                                            </a>
+                                        {% endif %}
+
+                                        {#  check if id of user already login equal to user who create this news,
+                                    they can delete and update this news #}
+
+                                        {#                                    {% if app.user.id == news.user.id %}#}
+                                        {#                                        <a href="{{ path('update_news', {'id': news.id }) }}"#}
+                                        {#                                           class="btn btn-warning ml-1 mr-1 text-white">#}
+                                        {#                                            <i class="fa-solid fa-pen-to-square"></i>#}
+                                        {#                                        </a>#}
+                                        {#                                        <a href="{{ path('delete_news', {'id': news.id }) }}"#}
+                                        {#                                           class="btn btn-danger ml-1 mr-1 text-white"#}
+                                        {#                                           onclick="return confirm('Are you sure to delete this post')">#}
+                                        {#                                            <i class="fa-solid fa-trash"></i>#}
+                                        {#                                        </a>#}
+                                        {#                                    {% endif %}#}
+                                    </div>
+                                </div>
+                                <div class="box-body">
+                                    <p><strong>Description</strong></p>
+                                    <p>{{ new.description }}</p>
+                                    <img class="img-responsive w-100 mt-2 mb-3" src="{{ new.imgPath }}" alt="Photo">
+                                    <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i>
+                                        Share
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-xs"><i
+                                                class="fa fa-thumbs-o-up"></i> Like
+                                    </button>
+                                    <span class="pull-right text-muted">12 likes - 2 comments</span>
+                                </div>
+                                <div class="box-footer box-comments mt-4 mb-4">
+                                </div>
+                                <div class="box-footer mt-4 mb-4">
+                                    <form action="#" method="post"><img class="img-responsive img-circle img-sm"
+                                                                        src="https://img.icons8.com/color/36/000000/administrator-male.png"
+                                                                        alt="Alt Text">
+                                        <div class="img-push"><input type="text" class="form-control input-sm"
+                                                                     placeholder="Press enter to post comment"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
 {% endblock %}
