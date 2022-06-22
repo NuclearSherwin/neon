@@ -72,22 +72,23 @@ class NewsController extends AbstractController
 
     //Update function
     /**
-     * @Route("/home/news/update/{$id}", name="news_update", methods={"GET","POST"})
+     * @Route("/home/news/update/{id}", name="news_update", methods={"GET","POST"})
      */
-    public function update(Request $request, $id)
+    public function update($id, Request $request): Response
     {
-        $Dnews = $this->getDoctrine()-getRepository(News::class)->find($id);
+        $Dnews = $this->getDoctrine()->getRepository(News::class)->find($id);
         $form = $this->createForm(NewsType::class, $Dnews);
         $form->handleRequest($request);
         // if press submit putting data to database
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
             $em->persist($Dnews);
             $em->flush();
 
             $this-> addFlash('notice','update Successfully ');
 
-            //back to news page then update a news successfully
+            //back to news page then update a new successfully
             return $this->redirectToRoute('neon_news');
         }
         return $this->render('news/update.html.twig', [
