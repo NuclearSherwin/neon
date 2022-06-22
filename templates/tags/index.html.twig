@@ -6,12 +6,15 @@
 
     {% if app.user %}
         <table class="table table-striped">
+            <th scope="row"><a href="{{ path('create_tag') }}">Create</a></th>
+
             <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">description</th>
                 <th scope="col">Action</th>
+
             </tr>
             </thead>
             <tbody>

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<a href="{{ path('neon_news', {'id': new.id }) }}" class="btn btn-default">Back to News List</a>
+<hr/>
+<h2 class="page-header">{{ new.Title }}</h2>
+<ul class="list-group">
+    <li class="list-group-item">Title: {{ new.Title }}</li>
+    <li class="list-group-item">Img path {{ new.imgpath }}</li>
+    <li class="list-group-item">Description: {{ new.description }}</li>
+
+    <li class="list-group-item">Due: <strong>{{ new.createat|date('F j,Y, g:i a') }}</strong></li>
+</ul>
+    <p>{{ new.description }}</p>
+{% endblock %}
