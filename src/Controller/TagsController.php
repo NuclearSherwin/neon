@@ -54,7 +54,7 @@ class TagsController extends AbstractController
 
 
     /**
-     * @Route("/todo/create", name="create_tag", methods={"GET","POST"})
+     * @Route("/tags/create", name="create_tag", methods={"GET","POST"})
      */
     public function createAction(Request $request)
     {
@@ -92,6 +92,25 @@ class TagsController extends AbstractController
             return true;
         }
         return false;
+    }
+    /**
+     * @Route ("/tags/update/{id}", name="tag_update")
+     */
+    public function editAction($id, Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $tag = $em->getRepository(Tag::class)->find($id);
+        $form  = $this->createForm(TagFormType::class, $tag);
+
+        if($this->saveChanges($form, $request, $tag)) {
+            $this->addFlash(
+                'notice',
+                'Todo Edited'
+            );
+        }
+        return $this->render('tags/update.html.twig', [
+            'form' => $form->createView()
+        ]);
+
     }
 }
 
