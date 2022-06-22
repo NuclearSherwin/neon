@@ -50,38 +50,48 @@ class TagsController extends AbstractController
             'tag' => $tag
         ]);
     }
-//    // create post function
 
-//    /**
-//     * @Route("/home/tags/create", name="create_tag", methods={"GET", "POST"})
-//     */
-//    public function createPost(Request $request): Response
-//    {
-//        //create new object
-//        $tags = new Tags();
-//        $form = $this->createForm(TagFormType::class, $tags);
+
+
+    /**
+     * @Route("/todo/create", name="create_tag", methods={"GET","POST"})
+     */
+    public function createAction(Request $request)
+    {
+        $tag = new Tag();
+        $form = $this->createForm(TagFormType::class, $tag);
+
+        if ($this->saveChanges($form, $request, $tag)) {
+            $this->addFlash(
+                'notice',
+                'Todo Added'
+            );
+
+            return $this->redirectToRoute('neon_tags');
+        }
+
+        return $this->render('tags/create.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    public function saveChanges($form, $request, $tag)
+    {
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+//            $tag->setName($request->request->get('tag')['name']);
 //
-//        $form->handleRequest($request);
-//
-//        //validation submit for post
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            $newTag = $form->getData();
-//            ;
-//
-//            }
-//
-//            //save the path of img into your project (/public/uploads/)
-//            $this->em->persist($newTag);
-//            $this->em->flush();
-//
-//            return $this->redirectToRoute('neon_tags');
-//        }
-//
-//
-//        return $this->render('tags/create.html.twig', [
-//            'form' => $form->createView()
-//        ]);
-//
-//    }
+//            $tag->setDescription($request->request->get('tag')['description']);
+
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($tag);
+            $em->flush();
+
+            return true;
+        }
+        return false;
+    }
 }
 
