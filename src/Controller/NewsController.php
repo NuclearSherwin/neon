@@ -3,9 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\News;
-use App\Entity\Post;
 use App\Form\NewsType;
-use App\Form\PostFormType;
+use ContainerO4St7eP\getNewsRepositoryService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,12 +34,13 @@ class NewsController extends AbstractController
     /**
      * @Route("/home/news/detail/{id}", name="detail_news", methods={"GET"})
      */
-    public function showDetail($id): Response
+    public function showDetail($id)
     {
-        $news = $this->newsRepository->find($id);
+        $Denews = $this->getDoctrine()->getRepository(News::class)
+            ->find($id);
 
         return $this->render('news/detail.html.twig', [
-            'news' => $news
+            'new' => $Denews
         ]);
     }
 
@@ -62,10 +62,35 @@ class NewsController extends AbstractController
 
             $this-> addFlash('notice','Submitted Successfully ');
 
-            //backe to news page then create a news successfully
+            //back to news page then create a news successfully
             return $this->redirectToRoute('neon_news');
         }
         return $this->render('news/create.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    //Update function
+    /**
+     * @Route("/home/news/update/{$id}", name="news_update", methods={"GET","POST"})
+     */
+    public function update(Request $request, $id)
+    {
+        $Dnews = $this->getDoctrine()-getRepository(NewsType::class)->find($id);
+        $form = $this->createForm(NewsType::class, $Dnews);
+        $form->handleRequest($request);
+        // if press submit putting data to database
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($Dnews);
+            $em->flush();
+
+            $this-> addFlash('notice','update Successfully ');
+
+            //back to news page then update a news successfully
+            return $this->redirectToRoute('neon_news');
+        }
+        return $this->render('news/update.html.twig', [
             'form' => $form->createView()
         ]);
     }
