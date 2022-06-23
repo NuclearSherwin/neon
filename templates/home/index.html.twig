@@ -4,6 +4,9 @@
 
 {% block body %}
     <style>
+        ::-webkit-scrollbar {
+            display: none;
+        }
         .all-wrapper {
             margin: 1em auto;
             width: 98%;
@@ -17,15 +20,29 @@
 
         .new-wrapper {
             height: 100vh;
-            width: 500px;
-            background-color: #fbbc05;
+            width: 300px;
+            background-color: #15baba;
+            border-radius: 5px;
 
         }
         .users-wrapper {
             height: 100vh;
-            width: 500px;
+            width: 300px;
             background-color: lightgreen;
+            border-radius: 5px;
 
+        }
+
+        .post-wrapper {
+            overflow-y: auto;
+            height: 800px;
+            width: 800px;
+        }
+
+        .status-wrapper {
+            z-index: 50;
+            width: 40%;
+            margin: 0 auto;
         }
     </style>
 
@@ -33,27 +50,27 @@
 
         {# new #}
         <div class="new-wrapper">
-
+            <div class="status-wrapper d-flex justify-content-center">
+                <div class="mr-auto ml-auto position-relative d-flex justify-content-center">
+                    <div class="ml-auto mr-auto pt-4 pr-4 pb-4 pl-4" style="background-color: #cee3f8;">
+                        <a class="text-center" href="{{ path('create_post') }}">Send everyone your status today
+                            <span class="text-success">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="post-wrapper">
-            <div class="mr-auto ml-auto position-relative d-flex justify-content-center">
-                <div class="ml-auto mr-auto pt-4 pr-4 pb-4 pl-4" style="background-color: #cee3f8;">
-                    <a class="text-center" href="{{ path('create_post') }}">Send everyone your status today
-                        <span class="text-success">
-                    <i class="fa-solid fa-paper-plane"></i>
-                    <i class="fa-solid fa-face-grin-beam"></i>
-                </span>
-                    </a>
-                </div>
-            </div>
 
             {% if app.user %}
                 {% for post in posts %}
                     <div class="page-content page-container mx-auto mt-4" id="page-content">
                         <div class="padding">
                             <div class="row container d-flex justify-content-center mx-auto">
-                                <div class="col-md-8 bg-white rounded ">
+                                <div class="col-md-8 bg-white rounded postbox">
                                     <div class="box box-widget w-100 bg-white">
                                         <div class="box-header with-border">
                                             <div class="user-block mt-2">
@@ -69,20 +86,8 @@
                                             <div class="box-tools d-flex justify-content-end mb-3">
                                                 <a href="{{ path('detail_post', {'id': post.id }) }}"
                                                    class="btn btn-info ml-1 mr-1 text-white">
-                                                    <i class="fa-solid fa-asterisk"></i>
+                                                    Detail
                                                 </a>
-                                                {#                                <a href="{{ path('create_posts') }}" class="btn btn-primary ml-1 mr-1 text-white"> #}
-                                                {#                                    <i class="fa-solid fa-circle-plus"></i> #}
-                                                {#                                </a> #}
-                                                {#                                <a href="" class="btn btn-warning ml-1 mr-1 text-white"> #}
-                                                {#                                    <i class="fa-solid fa-pen-to-square"></i> #}
-                                                {#                                        #}{#                                </a> #}
-
-                                                {#                                        <a href="{{ path('delete_post', {'id': post.id }) }}" #}
-                                                {#                                           class="btn btn-danger ml-1 mr-1 text-white" #}
-                                                {#                                           onclick="return confirm('Are you sure to delete this post')"> #}
-                                                {#                                            <i class="fa-solid fa-trash"></i> #}
-                                                {#                                        </a> #}
                                             </div>
                                         </div>
                                         <div class="box-body">
@@ -119,12 +124,8 @@
         </div>
 
         {# tag #}
-        <div class="users-wrapper">
-            <ul>
-                {% for person in users  %}
-                    <li>{{ person.name }}</li>
-                {% endfor %}
-            </ul>
+        <div class="users-wrapper d-flex justify-content-center">
+            <p>People <i class="fa-solid fa-user-group"></i></p>
         </div>
     </div>
 {% endblock %}
