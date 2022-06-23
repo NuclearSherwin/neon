@@ -22,7 +22,7 @@
         }
     </style>
     <h4 class="bg-info text-center pt-2 pb-2 text-white">ALL NEWS</h4>
-    {% for new in news  %}
+    {% for new in news %}
         {% if app.user %}
             <div class="page-content page-container mx-auto mt-4" id="page-content">
                 <div class="padding">
@@ -44,7 +44,7 @@
                                                 <i class="fa-solid fa-circle-plus"></i>
                                             </a>
                                             <a href="{{ path('news_update', {'id': new.id }) }}"
-                                                class="btn btn-info">
+                                               class="btn btn-info">
                                                 Update
                                             </a>
 

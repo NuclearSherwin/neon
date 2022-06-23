@@ -4,12 +4,9 @@ namespace App\Controller;
 
 use App\Entity\News;
 use App\Form\NewsType;
-use ContainerO4St7eP\getNewsRepositoryService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 
 class NewsController extends AbstractController
 {
@@ -60,7 +57,7 @@ class NewsController extends AbstractController
             $em->persist($Cnews);
             $em->flush();
 
-            $this-> addFlash('notice','Submitted Successfully ');
+            $this->addFlash('notice', 'Submitted Successfully ');
 
             //back to news page then create a news successfully
             return $this->redirectToRoute('neon_news');
@@ -71,6 +68,7 @@ class NewsController extends AbstractController
     }
 
     //Update function
+
     /**
      * @Route("/home/news/update/{id}", name="news_update", methods={"GET","POST"})
      */
@@ -86,7 +84,7 @@ class NewsController extends AbstractController
             $em->persist($Dnews);
             $em->flush();
 
-            $this-> addFlash('notice','update Successfully ');
+            $this->addFlash('notice', 'update Successfully ');
 
             //back to news page then update a new successfully
             return $this->redirectToRoute('neon_news');
@@ -101,13 +99,14 @@ class NewsController extends AbstractController
     /**
      * @Route("/home/news/delete/{id}", name="news_delete", methods={"GET"})
      */
-    public function delete($id){
+    public function delete($id)
+    {
         $Denews = $this->getDoctrine()->getRepository(News::class)->find($id);
         $em = $this->getDoctrine()->getManager();
         $em->remove($Denews);
         $em->flush();
 
-        $this->addFlash('notice','Delete Successfully ');
+        $this->addFlash('notice', 'Delete Successfully ');
         return $this->redirectToRoute('neon_news');
     }
 }
