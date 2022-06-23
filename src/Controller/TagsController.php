@@ -97,8 +97,11 @@ class TagsController extends AbstractController
      * @Route ("/tags/update/{id}", name="tag_update")
      */
     public function editAction($id, Request $request) {
-        $em = $this->getDoctrine()->getManager();
-        $tag = $em->getRepository(Tag::class)->find($id);
+//
+//        $em = $this->getDoctrine()->getManager();
+//        $tag = $em->getRepository(Tag::class)->find($id);
+
+        $tag = $this->tagResponsitory->find($id);
         $form  = $this->createForm(TagFormType::class, $tag);
 
         if($this->saveChanges($form, $request, $tag)) {
@@ -111,6 +114,25 @@ class TagsController extends AbstractController
             'form' => $form->createView()
         ]);
 
+    }
+    /**
+     * @Route("/tags/delete/{id}", name="tag_delete")
+     */
+    public function delete($id): Response
+    {
+//        $em = $this->getDoctrine()->getManager();
+//        $tag = $em->getRepository(TagFormType::class)->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $tag = $this->tagResponsitory->find($id);
+        $em->remove($tag);
+        $em->flush();
+
+        $this->addFlash(
+            'error',
+            'Tag deleted'
+        );
+
+        return $this->redirectToRoute('neon_tags');
     }
 }
 
