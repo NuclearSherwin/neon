@@ -58,20 +58,20 @@ class UsersController extends AbstractController
 
         if (!$profileImg || $user->getProfileImg() === null) {
             $name = $form->get('name')->getData();
-            $email = $form->get('email')->getData();
-            $plainPassword = $form->get('plainPassword')->getData();
-            $birthDay = $request->request->get('user')['birthday'];
+//            $email = $form->get('email')->getData();
+//            $plainPassword = $form->get('plainPassword')->getData();
+            $birthDay = $form->get('birthday')->getData();
 
             //encode for password
-            $hashPassword = $userPasswordHasher->hashPassword(
-                $user,
-                $plainPassword
-            );
+//            $hashPassword = $userPasswordHasher->hashPassword(
+//                $user,
+//                $plainPassword
+//            );
 
             $user->setName($name);
-            $user->setEmail($email);
-            $user->setPassword($hashPassword);
-            $user->setBirthday(\DateTime::createFromFormat('Y-m-d', $birthDay));
+//            $user->setEmail($email);
+//            $user->setPassword($hashPassword);
+            $birthDay->format('Y-m-h H:i:s');
 
             $this->em->flush();
             return $this->redirectToRoute('app_login');

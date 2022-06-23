@@ -99,6 +99,8 @@ class TagsController extends AbstractController
             );
             return $this->redirectToRoute('neon_tags');
         }
+
+
         return $this->render('tags/update.html.twig', [
             'form' => $form->createView()
         ]);
