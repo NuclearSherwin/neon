@@ -73,7 +73,8 @@ class TagsController extends AbstractController
     {
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
+//            $tag->setName($request->request->get('tag')['name']);
+//            $tag->setDescriptions($request->request->get('tag')['description']);
             $em = $this->getDoctrine()->getManager();
             $em->persist($tag);
             $em->flush();
@@ -96,6 +97,7 @@ class TagsController extends AbstractController
                 'notice',
                 'Todo Edited'
             );
+            return $this->redirectToRoute('neon_tags');
         }
         return $this->render('tags/update.html.twig', [
             'form' => $form->createView()
