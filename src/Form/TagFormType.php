@@ -14,18 +14,15 @@ class TagFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-
-            ->add('name',TextType::class,[
+            ->add('name', TextType::class, [
                 'attr' => array('placeholder' => 'please enter name'),
                 'label' => false
             ])
-            ->add('descriptions',TextareaType::class,[
-                'attr'=> array('placeholder'=>'please enter description'),
+            ->add('descriptions', TextareaType::class, [
+                'attr' => array('placeholder' => 'please enter description'),
                 'label' => false
-            ])
+            ]);
 
-
-        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

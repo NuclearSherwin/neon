@@ -7,32 +7,27 @@ use App\Form\TagFormType;
 use App\Repository\TagRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
 use Symfony\Component\Routing\Annotation\Route;
 
 class TagsController extends AbstractController
 {
-    private $em;
+    private EntityManagerInterface $em;
     private $tagResponsitory;
-    public function __construct(EntityManagerInterface $em, TagRepository $tagRepository)
+
+    public function __construct(EntityManagerInterface $_em, TagRepository $tagRepository)
     {
-        $this->em = $em;
+        $this->em = $_em;
         $this->tagResponsitory = $tagRepository;
     }
 
-
-
     /**
-     * @Route("home/tags", name="neon_tags")
+     * @Route("/tags", name="neon_tags")
      */
-    public function listNews(): Response
+    public function listTags(): Response
     {
-
         $tags = $this->tagResponsitory->findAll();
-
         return $this->render('tags/index.html.twig', [
             'tags' => $tags,
         ]);
@@ -40,7 +35,7 @@ class TagsController extends AbstractController
 
 
     /**
-     * @Route("/home/tags/detail/{id}", name="detail_tag")
+     * @Route("/tags/detail/{id}", name="detail_tag")
      */
     public function showDetail($id): Response
     {
@@ -50,7 +45,6 @@ class TagsController extends AbstractController
             'tag' => $tag
         ]);
     }
-
 
 
     /**
@@ -75,15 +69,10 @@ class TagsController extends AbstractController
         ]);
     }
 
-    public function saveChanges($form, $request, $tag)
+    public function saveChanges($form, Request $request, Tag $tag)
     {
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-//            $tag->setName($request->request->get('tag')['name']);
-//
-//            $tag->setDescription($request->request->get('tag')['description']);
-
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($tag);
@@ -93,18 +82,16 @@ class TagsController extends AbstractController
         }
         return false;
     }
+
     /**
-     * @Route ("/tags/update/{id}", name="tag_update")
+     * @Route("/tags/update/{id}", name="tag_update")
      */
-    public function editAction($id, Request $request) {
-//
-//        $em = $this->getDoctrine()->getManager();
-//        $tag = $em->getRepository(Tag::class)->find($id);
-
+    public function editAction($id, Request $request)
+    {
         $tag = $this->tagResponsitory->find($id);
-        $form  = $this->createForm(TagFormType::class, $tag);
+        $form = $this->createForm(TagFormType::class, $tag);
 
-        if($this->saveChanges($form, $request, $tag)) {
+        if ($this->saveChanges($form, $request, $tag)) {
             $this->addFlash(
                 'notice',
                 'Todo Edited'
@@ -115,13 +102,13 @@ class TagsController extends AbstractController
         ]);
 
     }
+
     /**
      * @Route("/tags/delete/{id}", name="tag_delete")
      */
     public function delete($id): Response
     {
-//        $em = $this->getDoctrine()->getManager();
-//        $tag = $em->getRepository(TagFormType::class)->find($id);
+
         $em = $this->getDoctrine()->getManager();
         $tag = $this->tagResponsitory->find($id);
         $em->remove($tag);
