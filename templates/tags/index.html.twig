@@ -25,6 +25,7 @@
                     <th scope="row">{{ tag.name }}</th>
                     <th scope="row">{{ tag.descriptions }}</th>
                     <th scope="row"><a href="{{ path('detail_tag',{'id': tag.id}) }}">Detail</a></th>
+                    <th scope="row"><a href="{{ path('tag_update',{'id': tag.id}) }}">Update</a></th>
                 </tr>
             {% endfor %}
             </tbody>
