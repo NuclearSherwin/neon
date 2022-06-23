@@ -39,7 +39,7 @@ class Post
     private $user;
 
     /**
-     * @ORM\OneToOne(targetEntity=tag::class, cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Tag::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $tag;
@@ -98,16 +98,22 @@ class Post
         return $this;
     }
 
-    public function getTag(): ?tag
+    public function getTag(): ?Tag
     {
         return $this->tag;
     }
 
-    public function setTag(tag $tag): self
+    public function setTag(Tag $tag): self
     {
         $this->tag = $tag;
 
         return $this;
+    }
+
+
+    public function __toString()
+    {
+        return $this->tag;
     }
 
 
