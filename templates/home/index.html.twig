@@ -18,17 +18,17 @@
             padding: 2px 6px;
         }
 
-        .new-wrapper {
+        .users-wrapper {
             height: 100vh;
-            width: 300px;
+            width: 250px;
             background-color: #15baba;
             border-radius: 5px;
 
         }
-        .users-wrapper {
+        .news-wrapper {
             height: 100vh;
-            width: 300px;
-            background-color: lightgreen;
+            width: 250px;
+            background-color: darkgray;
             border-radius: 5px;
 
         }
@@ -49,11 +49,17 @@
     <div class="all-wrapper d-flex justify-content-around">
 
         {# new #}
-        <div class="new-wrapper">
+        <div class="users-wrapper">
+            <div class="people-wrapper text-center mb-4">
+                <a href="#" class="text-black">
+                    People
+                    <i class="fa-solid fa-user-group"></i>
+                </a>
+            </div>
             <div class="status-wrapper d-flex justify-content-center">
                 <div class="mr-auto ml-auto position-relative d-flex justify-content-center">
-                    <div class="ml-auto mr-auto pt-4 pr-4 pb-4 pl-4" style="background-color: #cee3f8;">
-                        <a class="text-center" href="{{ path('create_post') }}">Send everyone your status today
+                    <div class="ml-auto mr-auto pt-4 pr-4 pb-4 pl-4" style="background-color: #EFC050;">
+                        <a class="text-center text-black" href="{{ path('create_post') }}">Send everyone your status today
                             <span class="text-success">
                     <i class="fa-solid fa-paper-plane"></i>
                 </span>
@@ -124,8 +130,13 @@
         </div>
 
         {# tag #}
-        <div class="users-wrapper d-flex justify-content-center">
-            <p>People <i class="fa-solid fa-user-group"></i></p>
+        <div class="news-wrapper text-center">
+            <div class="news">
+                <a href="{{ path('neon_news') }}" class="text-black">News to day</a>
+            </div>
+            <div class="tags">
+                <a href="{{ path('neon_tags') }}" class="text-danger">Hot trend topics</a>
+            </div>
         </div>
     </div>
 {% endblock %}
