@@ -89,7 +89,7 @@ class PostsController extends AbstractController
             $this->em->persist($newPost);
             $this->em->flush();
 
-            return $this->redirectToRoute('neon_posts');
+            return $this->redirectToRoute('neon_home');
         }
 
         // identifier the dot at the end of the picture
@@ -119,12 +119,12 @@ class PostsController extends AbstractController
         // of current user are posting.
         $newPost->setUser($this->getUser());
 
-        
+
         //save the path of img into your project (/public/uploads/)
         $this->em->persist($newPost);
         $this->em->flush();
 
-        return $this->redirectToRoute('neon_posts');
+        return $this->redirectToRoute('neon_home');
 
     }
 
@@ -156,7 +156,7 @@ class PostsController extends AbstractController
             $post->setDescription($form->get('description')->getData());
 
             $this->em->flush();
-            return $this->redirectToRoute('neon_posts');
+            return $this->redirectToRoute('neon_home');
         }
 
 
@@ -181,9 +181,8 @@ class PostsController extends AbstractController
         $post->setImgPath('/uploads/' . $newFileName);
         $this->em->flush();
 
-        return $this->redirectToRoute('neon_posts');
-
-
+        return $this->redirectToRoute('neon_home');
+        
     }
 
 

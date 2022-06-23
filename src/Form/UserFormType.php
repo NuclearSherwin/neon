@@ -28,8 +28,7 @@ class UserFormType extends AbstractType
                 'required' => false,
                 'mapped' => false,
                 'label' => false
-            ])
-            ->add('');
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

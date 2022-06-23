@@ -97,6 +97,8 @@ class TagsController extends AbstractController
                 'Todo Edited'
             );
         }
+
+
         return $this->render('tags/update.html.twig', [
             'form' => $form->createView()
         ]);

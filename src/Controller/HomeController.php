@@ -30,20 +30,7 @@ class HomeController extends AbstractController
             'users' => $users
         ]);
     }
-
-
-
-//    /**
-//     * @Route("/users", name="neon_users")
-//     */
-//    public function showUser(): Response
-//    {
-//        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
-//        return $this->render('home/user.html.twig', [
-//            'users' => $users
-//        ]);
-//    }
-
+    
 
     /**
      * @Route("/home/user/{id}", methods={"GET"}, name="neon_user")
