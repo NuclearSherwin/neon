@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Post;
-use App\Entity\User;
 use App\Form\PostFormType;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -48,6 +47,7 @@ class PostsController extends AbstractController
 
 
     //show detail of post
+
     /**
      * @Route("/home/posts/detail/{id}", name="detail_post", methods={"GET"})
      */
@@ -71,45 +71,20 @@ class PostsController extends AbstractController
         //create new object
         $post = new Post();
         $form = $this->createForm(PostFormType::class, $post);
-
         $form->handleRequest($request);
 
+
+        if (!$form->isSubmitted() || !$form->isValid()) {
+            return $this->render('posts/create.html.twig', [
+                'form' => $form->createView()
+            ]);
+        }
+
         //validation submit for post
-        if ($form->isSubmitted() && $form->isValid()) {
-            $newPost = $form->getData();
-            $imgPath = $form->get('imgPath')->getData();
-            if ($imgPath) {
+        $newPost = $form->getData();
+        $imgPath = $form->get('imgPath')->getData();
 
-                // identifier the dot at the end of the picture
-                $newFileName = uniqid() . '.' . $imgPath->guessExtension();
-
-                try {
-                    $imgPath->move(
-                    //kernel will set up bundles used by the application and provide them with app's configurations
-                        $this->getParameter('kernel.project_dir') . '/public/uploads',
-                        $newFileName
-                    );
-                } catch (FileException $e) {
-                    return new Response($e->getMessage());
-
-                }
-
-                $newPost->setImgPath('/uploads/' . $newFileName);
-
-                // set the current time for upload a post
-                $date = new \DateTimeImmutable();
-                $date->format("Y-m-d H:i:s");
-                $currentTime = $date->setTimestamp( strtotime(date("Y-m-d H:i:s")));
-
-                $newPost->setCreateAt($currentTime);
-
-
-                // when user create a post it will take the id
-                // of current user are posting.
-                $newPost->setUser($this->getUser());
-
-            }
-
+        if (!$imgPath) {
             //save the path of img into your project (/public/uploads/)
             $this->em->persist($newPost);
             $this->em->flush();
@@ -117,10 +92,39 @@ class PostsController extends AbstractController
             return $this->redirectToRoute('neon_posts');
         }
 
+        // identifier the dot at the end of the picture
+        $newFileName = uniqid() . '.' . $imgPath->guessExtension();
 
-        return $this->render('posts/create.html.twig', [
-            'form' => $form->createView()
-        ]);
+        try {
+            $imgPath->move(
+            //kernel will set up bundles used by the application and provide them with app's configurations
+                $this->getParameter('kernel.project_dir') . '/public/uploads',
+                $newFileName
+            );
+        } catch (FileException $e) {
+            return new Response($e->getMessage());
+
+        }
+
+        $newPost->setImgPath('/uploads/' . $newFileName);
+
+        // set the current time for upload a post
+        $date = new \DateTimeImmutable();
+        $date->format("Y-m-d H:i:s");
+        $currentTime = $date->setTimestamp(strtotime(date("Y-m-d H:i:s")));
+
+        $newPost->setCreateAt($currentTime);
+
+        // when user create a post it will take the id
+        // of current user are posting.
+        $newPost->setUser($this->getUser());
+
+        
+        //save the path of img into your project (/public/uploads/)
+        $this->em->persist($newPost);
+        $this->em->flush();
+
+        return $this->redirectToRoute('neon_posts');
 
     }
 
@@ -136,54 +140,50 @@ class PostsController extends AbstractController
     {
         $post = $this->postRepository->find($id);
         $form = $this->createForm(PostFormType::class, $post);
-
         $form->handleRequest($request);
 
         //for picture edit
+        if (!$form->isSubmitted() || !$form->isValid() || $post->getImgPath() == null) {
+            return $this->render('posts/update.html.twig', [
+                'post' => $post,
+                'form' => $form->createView()
+            ]);
+        }
+
         $imgPath = $form->get('imgPath')->getData();
+        if (!$imgPath) {
+            //set the rest of properties
+            $post->setDescription($form->get('description')->getData());
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            if ($imgPath) {
-                // checking whether image input is not null
-                if ($post->getImgPath() !== null) {
-                    if (file_exists($this->getParameter('kernel.project_dir')
-                        . $post->getImgPath())) {
-                        $this->getParameter('kernel.project_dir') . $post->getImgPath();
-                    }
-
-
-                    //making the dot at the end of string when we input the picture into
-                    $newFileName = uniqid() . '.' . $imgPath->guessExtension();
-
-
-                    //trying to get the picture into public
-                    try {
-                        $imgPath->move($this->getParameter('kernel.project_dir') . '/public/uploads',
-                            $newFileName);
-                    } catch (FileException $e) {
-                        return new Response($e->getMessage());
-                    }
-
-                    //final set imgPath for picture with new file name
-                    $post->setImgPath('/uploads/' . $newFileName);
-                    $this->em->flush();
-
-                    return $this->redirectToRoute('neon_posts');
-                }
-            } else {
-                //set the rest of properties
-                $post->setDescription($form->get('description')->getData());
-
-                $this->em->flush();
-                return $this->redirectToRoute('neon_posts');
-            }
+            $this->em->flush();
+            return $this->redirectToRoute('neon_posts');
         }
 
 
-        return $this->render('posts/update.html.twig', [
-            'post' => $post,
-            'form' => $form->createView()
-        ]);
+        // checking whether image input is not null
+        if (file_exists($this->getParameter('kernel.project_dir')
+            . $post->getImgPath())) {
+            $this->getParameter('kernel.project_dir') . $post->getImgPath();
+        }
+
+
+        //making the dot at the end of string when we input the picture into
+        $newFileName = uniqid() . '.' . $imgPath->guessExtension();
+        //trying to get the picture into public
+        try {
+            $imgPath->move($this->getParameter('kernel.project_dir') . '/public/uploads',
+                $newFileName);
+        } catch (FileException $e) {
+            return new Response($e->getMessage());
+        }
+
+        //final set imgPath for picture with new file name
+        $post->setImgPath('/uploads/' . $newFileName);
+        $this->em->flush();
+
+        return $this->redirectToRoute('neon_posts');
+
+
     }
 
 
@@ -193,7 +193,7 @@ class PostsController extends AbstractController
     /**
      * @Route("/home/posts/delete/{id}", methods={"GET", "DELETE"}, name="delete_post")
      */
-    public function deletePost($id) : Response
+    public function deletePost($id): Response
     {
         $post = $this->postRepository->find($id);
         $this->em->remove($post);
