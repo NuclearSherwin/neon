@@ -38,6 +38,13 @@ class Post
      */
     private $user;
 
+    /**
+     * @ORM\OneToOne(targetEntity=tag::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $tag;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,4 +97,18 @@ class Post
 
         return $this;
     }
+
+    public function getTag(): ?tag
+    {
+        return $this->tag;
+    }
+
+    public function setTag(tag $tag): self
+    {
+        $this->tag = $tag;
+
+        return $this;
+    }
+
+
 }

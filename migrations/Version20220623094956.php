@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220623072738 extends AbstractMigration
+final class Version20220623094956 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,12 +20,16 @@ final class Version20220623072738 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE tag ADD tag VARCHAR(255) DEFAULT NULL');
+        $this->addSql('ALTER TABLE post ADD tag_id INT NOT NULL');
+        $this->addSql('ALTER TABLE post ADD CONSTRAINT FK_5A8A6C8DBAD26311 FOREIGN KEY (tag_id) REFERENCES tag (id)');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_5A8A6C8DBAD26311 ON post (tag_id)');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE tag DROP tag');
+        $this->addSql('ALTER TABLE post DROP FOREIGN KEY FK_5A8A6C8DBAD26311');
+        $this->addSql('DROP INDEX UNIQ_5A8A6C8DBAD26311 ON post');
+        $this->addSql('ALTER TABLE post DROP tag_id');
     }
 }

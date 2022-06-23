@@ -27,6 +27,11 @@ class Tag
      */
     private $descriptions;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Post::class, mappedBy="tag", cascade={"persist", "remove"})
+     */
+    private $post;
+
 
     public function getId(): ?int
     {
@@ -53,6 +58,23 @@ class Tag
     public function setDescriptions(?string $descriptions): self
     {
         $this->descriptions = $descriptions;
+
+        return $this;
+    }
+
+    public function getPost(): ?Post
+    {
+        return $this->post;
+    }
+
+    public function setPost(Post $post): self
+    {
+        // set the owning side of the relation if necessary
+        if ($post->getTag() !== $this) {
+            $post->setTag($this);
+        }
+
+        $this->post = $post;
 
         return $this;
     }
