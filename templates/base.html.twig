@@ -53,11 +53,7 @@
                        role="button"
 
                     ><i class="fa-solid fa-user"></i></a>
-{#                       <a class="nav-link" href="{{ path('neon_user', {'id': app.user.id}) }}" id="navbarDropdown" role="button" data-mdb-toggle="dropdown"#}
-{#                          aria-expanded="false">#}
-{#                           <img src="{{ app.user.profileImg }}" class="rounded-circle img-fluid"#}
-{#                                height="18" width="18" alt="user-avatar" loading="lazy">#}
-{#                       </a>#}
+
 
                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                            <a class="dropdown-item" href="{{ path('profile_user', {'id': app.user.id}) }} ">{{ app.user.name }}</a>

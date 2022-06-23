@@ -33,7 +33,6 @@
                                     <div class="user-block mt-2">
                                         </span> <span class="description">
                                 </span></div>
-                                    {#                                <p><i class="text-success">at</i> {{ news.createat|date('F j, Y, g:i a') }}</p>#}
                                     <div class="box-tools d-flex justify-content-end mb-3">
                                         <a href="{{ path('neon_home') }}" class="btn btn-success ml-1 mr-1 text-white">
                                             <i class="fa-solid fa-house"></i>
@@ -48,7 +47,12 @@
                                                 class="btn btn-info">
                                                 Update
                                             </a>
+
                                         {% endif %}
+                                        <a href="{{ path('news_delete', {'id': new.id }) }}"
+                                           class="btn btn-danger">
+                                            Delete
+                                        </a>
 
                                     </div>
                                 </div>

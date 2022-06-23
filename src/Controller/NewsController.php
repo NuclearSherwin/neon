@@ -99,7 +99,7 @@ class NewsController extends AbstractController
     //delete function
 
     /**
-     * @Route("/home/news/delete/{$id}", name="news_delete", methods={"GET"})
+     * @Route("/home/news/delete/{id}", name="news_delete", methods={"GET"})
      */
     public function delete($id){
         $Denews = $this->getDoctrine()->getRepository(News::class)->find($id);
