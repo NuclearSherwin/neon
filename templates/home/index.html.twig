@@ -21,6 +21,12 @@
             background-color: #fbbc05;
 
         }
+        .users-wrapper {
+            height: 100vh;
+            width: 500px;
+            background-color: lightgreen;
+
+        }
     </style>
 
     <div class="all-wrapper d-flex justify-content-around">
@@ -113,8 +119,12 @@
         </div>
 
         {# tag #}
-        <div class="new-wrapper">
-
+        <div class="users-wrapper">
+            <ul>
+                {% for person in users  %}
+                    <li>{{ person.name }}</li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 {% endblock %}
