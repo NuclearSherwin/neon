@@ -56,45 +56,29 @@ class UsersController extends AbstractController
             ]);
         }
 
-        if (!$profileImg) {
-            $user->setName($form->get('name')->getData());
-            $user->setEmail($form->get('email')->getData());
+        if (!$profileImg || $user->getProfileImg() === null) {
+            $name = $form->get('name')->getData();
+            $email = $form->get('email')->getData();
+            $plainPassword = $form->get('plainPassword')->getData();
+            $birthDay = $request->request->get('user')['birthday'];
 
             //encode for password
-            $user->setPassword(
-                $userPasswordHasher->hashPassword(
-                    $user,
-                    $form->get('plainPassword')->getData()
-                )
+            $hashPassword = $userPasswordHasher->hashPassword(
+                $user,
+                $plainPassword
             );
 
-            $user->setBirthday(\DateTime::createFromFormat('Y-m-d', $request->request->get('user')['birthday']));
+            $user->setName($name);
+            $user->setEmail($email);
+            $user->setPassword($hashPassword);
+            $user->setBirthday(\DateTime::createFromFormat('Y-m-d', $birthDay));
 
             $this->em->flush();
             return $this->redirectToRoute('app_login');
         }
 
-        if ($user->getProfileImg() === null) {
-            $user->setName($form->get('name')->getData());
-            $user->setEmail($form->get('email')->getData());
-
-            //encode for password
-            $user->setPassword(
-                $userPasswordHasher->hashPassword(
-                    $user,
-                    $form->get('plainPassword')->getData()
-                )
-            );
-
-            $user->setBirthday(\DateTime::createFromFormat('Y-m-d', $request->request->get('user')['birthday']));
-
-            $this->em->flush();
-            return $this->redirectToRoute('app_login');
-        }
-
-        if (file_exists(
-            $this->getParameter('kernel.project_dir') . $user->getProfileImg()
-        )) {
+        $fileName = $this->getParameter('kernel.project_dir') . $user->getProfileImg();
+        if (file_exists($fileName)) {
             $this->GetParameter('kernel.project_dir') . $user->getProfileImg();
         }
         $newFileName = uniqid() . '.' . $profileImg->guessExtension();
