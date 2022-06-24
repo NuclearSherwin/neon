@@ -22,7 +22,7 @@
                    <p class="text-muted">
                       {{ new.description }}
                    </p>
-                   <button type="button" class="btn btn-primary">Detail</button>
+                   <a class="btn btn-info" href="{{ path('detail_news',{'id': new.id}) }}">Detail</a>
                </div>
            </div>
        {% endfor %}
