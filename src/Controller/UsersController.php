@@ -74,7 +74,7 @@ class UsersController extends AbstractController
             $birthDay->format('Y-m-h H:i:s');
 
             $this->em->flush();
-            return $this->redirectToRoute('app_login');
+            return $this->redirectToRoute('neon_home');
         }
 
         $fileName = $this->getParameter('kernel.project_dir') . $user->getProfileImg();
@@ -95,7 +95,7 @@ class UsersController extends AbstractController
         $user->setProfileImg('/uploads/' . $newFileName);
         $this->em->flush();
 
-        return $this->redirectToRoute('app_login');
+        return $this->redirectToRoute('neon_home');
 
     }
 
@@ -109,7 +109,7 @@ class UsersController extends AbstractController
         $this->em->remove($user);
         $this->em->flush();
 
-        return $this->redirectToRoute('app_login');
+        return $this->redirectToRoute('profile_user');
 
     }
 
