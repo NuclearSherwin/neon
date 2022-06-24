@@ -63,7 +63,7 @@ class NewsController extends AbstractController
         }
 
         $News = $form->getData();
-        $imgpath = $form->get('imgpath')->getData();
+        $imgpath = $form->get('img_path')->getData();
 
         if (!$imgpath) {
             $em = $this->getDoctrine()->getManager();
@@ -89,7 +89,7 @@ class NewsController extends AbstractController
 
         }
 
-        $News->setImgPath('/news/' . setImgPath);
+        $News->setImgPath('/news/' . $newFile);
 
 
         $em = $this->getDoctrine()->getManager();
@@ -120,7 +120,15 @@ class NewsController extends AbstractController
         $form = $this->createForm(NewsType::class, $Dnews);
         $form->handleRequest($request);
         // if press submit putting data to database
-        if ($form->isSubmitted() && $form->isValid()) {
+        if (!$form->isSubmitted() || !$form->isValid()) {
+            return $this->render('news/update.html.twig', [
+                'form' => $form->createView()
+            ]);
+        }
+
+        $imgpath = $form->get('img_path')->getData();
+        if (!$imgpath) {
+
             $em = $this->getDoctrine()->getManager();
 
             $em->persist($Dnews);
@@ -131,10 +139,35 @@ class NewsController extends AbstractController
             //back to news page then update a new successfully
             return $this->redirectToRoute('neon_news');
         }
-        return $this->render('news/update.html.twig', [
-            'form' => $form->createView()
-        ]);
+
+        if (file_exists($this->getParameter('kernel.project_dir')
+            . $Dnews->getImgPath())) {
+            $this->getParameter('kernel.project_dir') . $Dnews->getImgPath();
+        }
+
+        $newFileName = uniqid() . '.' . $imgpath->guessExtension();
+
+        try {
+            $imgpath->move($this->getParameter('kernel.project_dir') . '/public/news',
+                $newFileName);
+        } catch (FileException $e) {
+            return new Response($e->getMessage());
+        }
+
+
+        $Dnews->setImgPath('/news/' . $newFileName);
+
+
+        $em = $this->getDoctrine()->getManager();
+
+        $em->persist($Dnews);
+        $em->flush();
+
+        $this->addFlash('notice', 'update Successfully ');
+        return $this->redirectToRoute('neon_news');
     }
+
+
 
 //delete function
 
