@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TagRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +33,16 @@ class Tag
      * @ORM\OneToOne(targetEntity=Post::class, mappedBy="tag", cascade={"persist", "remove"})
      */
     private $post;
+
+    /**
+     * @ORM\OneToMany(targetEntity=News::class, mappedBy="tag")
+     */
+    private $news;
+
+    public function __construct()
+    {
+        $this->news = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -82,6 +94,36 @@ class Tag
     public function __toString()
     {
         return $this->name;
+    }
+
+    /**
+     * @return Collection<int, News>
+     */
+    public function getNews(): Collection
+    {
+        return $this->news;
+    }
+
+    public function addNews(News $news): self
+    {
+        if (!$this->news->contains($news)) {
+            $this->news[] = $news;
+            $news->setTag($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNews(News $news): self
+    {
+        if ($this->news->removeElement($news)) {
+            // set the owning side to null (unless already changed)
+            if ($news->getTag() === $this) {
+                $news->setTag(null);
+            }
+        }
+
+        return $this;
     }
 
 }
