@@ -5,6 +5,11 @@
 {% block body %}
     <!--Section: News of the day-->
    <div>
+       <div>
+           <a class="btn btn-primary" href="{{ path('news_create') }}">
+               + Create News
+           </a>
+       </div>
        {% for new in news  %}
            <div class="row gx-5">
                <div class="col-md-6 mb-4">
