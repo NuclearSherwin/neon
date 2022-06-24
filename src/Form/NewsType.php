@@ -32,7 +32,13 @@ class NewsType extends AbstractType
                 ),
                 'label' => false
             ])
-            ->add('Create_at');
+            ->add('Create_at')
+
+            ->add('tag')
+
+            ;
+
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

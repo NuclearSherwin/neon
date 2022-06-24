@@ -25,7 +25,7 @@ class PostFormType extends AbstractType
                 'required' => false,
                 'mapped' => false,
             ])
-            ->add('tag',);
+            ->add('tag');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

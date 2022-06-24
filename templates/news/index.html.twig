@@ -3,86 +3,35 @@
 {% block title %}News detail{% endblock %}
 
 {% block body %}
-    <style>
-        .example-wrapper {
-            margin: 1em auto;
-            max-width: 800px;
-            width: 95%;
-            font: 18px/1.5 sans-serif;
-        }
+    <!--Section: News of the day-->
+   <div>
+       <div>
+           <a class="btn btn-primary" href="{{ path('news_create') }}">
+               + Create News
+           </a>
+       </div>
+       {% for new in news  %}
+           <div class="row gx-5">
+               <div class="col-md-6 mb-4">
+                   <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
+                       <img src="{{ new.imgPath }}" class="img-fluid" />
+                       <a href="#!">
+                           <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                       </a>
+                   </div>
+               </div>
 
-        .example-wrapper code {
-            background: #F5F5F5;
-            padding: 2px 6px;
-        }
+               <div class="col-md-6 mb-4">
+                   <span class="badge bg-danger px-2 py-1 shadow-1-strong mb-3">News of the day</span>
+                   <h4><strong>{{ new.title }}</strong></h4>
+                   <p class="text-muted">
+                      {{ new.description }}
+                   </p>
+                   <a class="btn btn-info" href="{{ path('detail_news',{'id': new.id}) }}">Detail</a>
+               </div>
+           </div>
+       {% endfor %}
+   </div>
 
-        body {
-            background: rgb(2, 0, 36);
-            background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(5, 25, 54, 1) 34%, rgba(0, 212, 255, 1) 100%) !important;
-        }
-    </style>
-    <h4 class="bg-info text-center pt-2 pb-2 text-white">ALL NEWS</h4>
-    {% for new in news  %}
-        {% if app.user %}
-            <div class="page-content page-container mx-auto mt-4" id="page-content">
-                <div class="padding">
-                    <div class="row container d-flex justify-content-center mx-auto">
-                        <div class="col-md-6 bg-white rounded">
-                            <div class="box box-widget w-100 bg-white">
-                                <div class="box-header with-border">
-                                    <div class="user-block mt-2">
-                                        </span> <span class="description">
-                                </span></div>
-                                    <div class="box-tools d-flex justify-content-end mb-3">
-                                        <a href="{{ path('neon_home') }}" class="btn btn-success ml-1 mr-1 text-white">
-                                            <i class="fa-solid fa-house"></i>
-                                        </a>
-
-                                        {% if app.user %}
-                                            <a href="{{ path('news_create') }}"
-                                               class="btn btn-primary ml-1 mr-1 text-white">
-                                                <i class="fa-solid fa-circle-plus"></i>
-                                            </a>
-                                            <a href="{{ path('news_update', {'id': new.id }) }}"
-                                                class="btn btn-info">
-                                                Update
-                                            </a>
-
-                                        {% endif %}
-                                        <a href="{{ path('news_delete', {'id': new.id }) }}"
-                                           class="btn btn-danger">
-                                            Delete
-                                        </a>
-
-                                    </div>
-                                </div>
-                                <div class="box-body">
-                                    <p><strong>Description</strong></p>
-                                    <p>{{ new.description }}</p>
-                                    <img class="img-responsive w-100 mt-2 mb-3" src="{{ new.imgPath }}" alt="Photo">
-                                    <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i>
-                                        Share
-                                    </button>
-                                    <button type="button" class="btn btn-default btn-xs"><i
-                                                class="fa fa-thumbs-o-up"></i> Like
-                                    </button>
-                                    <span class="pull-right text-muted">12 likes - 2 comments</span>
-                                </div>
-                                <div class="box-footer box-comments mt-4 mb-4">
-                                </div>
-                                <div class="box-footer mt-4 mb-4">
-                                    <form action="#" method="post"><img class="img-responsive img-circle img-sm"
-                                                                        src="https://img.icons8.com/color/36/000000/administrator-male.png"
-                                                                        alt="Alt Text">
-                                        <div class="img-push"><input type="text" class="form-control input-sm"
-                                                                     placeholder="Press enter to post comment"></div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {% endif %}
-    {% endfor %}
+    <!--Section: News of the day-->
 {% endblock %}

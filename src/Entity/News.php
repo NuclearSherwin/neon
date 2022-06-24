@@ -37,6 +37,12 @@ class News
      */
     private $Create_at;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Tag::class, inversedBy="news")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $tag;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +92,18 @@ class News
     public function setCreateAt(\DateTimeInterface $Create_at): self
     {
         $this->Create_at = $Create_at;
+
+        return $this;
+    }
+
+    public function getTag(): ?Tag
+    {
+        return $this->tag;
+    }
+
+    public function setTag(?Tag $tag): self
+    {
+        $this->tag = $tag;
 
         return $this;
     }
