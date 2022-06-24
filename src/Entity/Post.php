@@ -39,7 +39,7 @@ class Post
     private $user;
 
     /**
-     * @ORM\OneToOne(targetEntity=Tag::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Tag::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $tag;
