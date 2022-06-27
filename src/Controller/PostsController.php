@@ -92,7 +92,7 @@ class PostsController extends AbstractController
             return $this->redirectToRoute('neon_home');
         }
 
-        // identifier the dot at the end of the picture
+
         $newFileName = uniqid() . '.' . $imgPath->guessExtension();
 
         try {
@@ -182,7 +182,7 @@ class PostsController extends AbstractController
         $this->em->flush();
 
         return $this->redirectToRoute('neon_home');
-        
+
     }
 
 

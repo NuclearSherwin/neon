@@ -30,7 +30,7 @@ class Tag
     private $descriptions;
 
     /**
-     * @ORM\OneToOne(targetEntity=Post::class, mappedBy="tag", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=Post::class, mappedBy="tag", cascade={"persist", "remove"})
      */
     private $post;
 
