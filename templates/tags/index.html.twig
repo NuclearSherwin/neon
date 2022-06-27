@@ -26,7 +26,8 @@
                     <th scope="row">{{ tag.descriptions }}</th>
                     <th scope="row"><a href="{{ path('detail_tag',{'id': tag.id}) }}">Detail</a></th>
                     <th scope="row"><a href="{{ path('tag_update',{'id': tag.id}) }}">Update</a></th>
-                    <th scope="row"><a href="{{ path('tag_delete',{'id': tag.id}) }}">Delete</a></th>
+                    <th scope="row"><a onclick="return confirm('are you sure to delete?')"
+                                       href="{{ path('tag_delete',{'id': tag.id}) }}">Delete</a></th>
 
                 </tr>
             {% endfor %}

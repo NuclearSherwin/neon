@@ -1,0 +1,529 @@
+[33mcommit 393e9e0f220c3ce5b50c1bdaa7fc1600f085e1cd[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Merge: 5b0170a 89afd89
+Author: Demon Master <you@example.com>
+Date:   Fri Jun 24 20:58:45 2022 +0700
+
+    Merge branch 'main' of https://github.com/NuclearSherwin/neon
+
+[33mcommit 89afd89d1c6fda3f283b23960adca94929eb2ca5[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Trong-khanh <tltkhanh1501@gmail.com>
+Date:   Fri Jun 24 18:28:34 2022 +0700
+
+    Edit update,delete button in detail, add detai button on index page
+
+[33mcommit ed0258f582cb3b45f3c557af90f8ff4f9c286308[m
+Author: Trong-khanh <tltkhanh1501@gmail.com>
+Date:   Fri Jun 24 18:14:45 2022 +0700
+
+    make button in Index and detail
+
+[33mcommit 20daa1fd1d0e2975a7c628f953531c7cd83b7339[m
+Author: Trong-khanh <tltkhanh1501@gmail.com>
+Date:   Fri Jun 24 18:01:43 2022 +0700
+
+    update index of news
+
+[33mcommit a26581a99e8e2274ad97256e11dcc8a6335609c2[m
+Author: Trong-khanh <tltkhanh1501@gmail.com>
+Date:   Fri Jun 24 17:56:29 2022 +0700
+
+    add img update
+
+[33mcommit b4b145de2cf0155ade4f2a2f1720dff8327807f5[m
+Author: Trong-khanh <tltkhanh1501@gmail.com>
+Date:   Fri Jun 24 17:30:43 2022 +0700
+
+    import antonation to prevent the route
+
+[33mcommit 5b0170aa9b1f61b6a79bae756c8f42f06c74f4af[m
+Author: Demon Master <you@example.com>
+Date:   Fri Jun 24 17:21:58 2022 +0700
+
+    fix format
+
+[33mcommit bbfdba7dacff7cb7462c52553eed732db021835c[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Fri Jun 24 17:04:34 2022 +0700
+
+    support antonation
+
+[33mcommit b0bc94fb8adf78b81a69b942575dbc8a9555e2e9[m
+Author: Trong-khanh <tltkhanh1501@gmail.com>
+Date:   Fri Jun 24 16:47:20 2022 +0700
+
+     edit create
+
+[33mcommit d6fec2f24510391b28dee5425e3d53237dd549d0[m
+Author: Trong-khanh <tltkhanh1501@gmail.com>
+Date:   Fri Jun 24 15:59:52 2022 +0700
+
+    conect news to to tag
+
+[33mcommit 29466553172d4ae8450745a2040d477db5c4fb67[m
+Merge: d431938 450b6f4
+Author: Demon Master <you@example.com>
+Date:   Fri Jun 24 15:34:14 2022 +0700
+
+    Merge branch 'main' of https://github.com/NuclearSherwin/neon
+
+[33mcommit 450b6f406f647a0fdd140a8a09522416671a8469[m[33m ([m[1;32mhieu[m[33m)[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Fri Jun 24 15:33:17 2022 +0700
+
+    chaging relationship between post and tag to ManyToOne
+
+[33mcommit d431938da218e5efd1e93293062d6caaa2748d60[m
+Merge: 5faf405 7c6054a
+Author: Demon Master <you@example.com>
+Date:   Thu Jun 23 22:20:16 2022 +0700
+
+    Merge branch 'main' of https://github.com/NuclearSherwin/neon
+
+[33mcommit 7c6054a6b727a4f88d9d6f804ca4a23786fb624f[m[33m ([m[1;31morigin/phong[m[33m)[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Thu Jun 23 22:11:14 2022 +0700
+
+    remove the plain password fix the error of update profile when user not input anything to update
+
+[33mcommit 5faf405b42fa1ec569ef4848c3aa56f64fd6bcde[m
+Author: Demon Master <you@example.com>
+Date:   Thu Jun 23 17:33:20 2022 +0700
+
+    return to index tag
+
+[33mcommit f4c1912fc44dd5975e3bd1ebf185589cda3fc084[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Thu Jun 23 17:26:43 2022 +0700
+
+    fix tag in post
+
+[33mcommit 4756f57deb3f4b186ecb1def294f092fb87cd04a[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Thu Jun 23 16:51:23 2022 +0700
+
+    add tag to post
+
+[33mcommit 7c237d26fe43a3df184247e4eb8588f6355212ff[m
+Merge: 09879c7 5631319
+Author: Demon Master <you@example.com>
+Date:   Thu Jun 23 16:09:47 2022 +0700
+
+    Merge branch 'main' of https://github.com/NuclearSherwin/neon
+
+[33mcommit 09879c76f6a187865a20c25fa6f424bcff3e6ae5[m
+Author: Demon Master <you@example.com>
+Date:   Thu Jun 23 16:09:09 2022 +0700
+
+    fix tagcontrollet
+
+[33mcommit 56313192ac8530e8d6bcf64c4db399346280de12[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Thu Jun 23 15:56:55 2022 +0700
+
+    format code detail in user
+
+[33mcommit 34e00ebb639a421c17ac8cf6e5a2bc1672af6544[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Thu Jun 23 15:40:34 2022 +0700
+
+    format code of post controller and user controller
+
+[33mcommit 30e7c97884f0f4ac02623074a9b3369cd1f53c3e[m
+Merge: 6c65e9f 95cc1c8
+Author: Trong-khanh <tltkhanh1501@gmail.com>
+Date:   Thu Jun 23 13:27:00 2022 +0700
+
+    Merge branch 'Khanh'
+
+[33mcommit 6c65e9f10b91a151fdd68c017d5d22126b51b19a[m
+Merge: 6d208c9 25e8790
+Author: Trong-khanh <tltkhanh1501@gmail.com>
+Date:   Thu Jun 23 13:26:50 2022 +0700
+
+    Merge branch 'main' of github.com:NuclearSherwin/neon
+
+[33mcommit 95cc1c8c9336e418a758f9dbc9408e118aeca260[m
+Merge: 7444eea 25e8790
+Author: Trong-khanh <tltkhanh1501@gmail.com>
+Date:   Thu Jun 23 13:26:00 2022 +0700
+
+    Merge branch 'main' of github.com:NuclearSherwin/neon into Khanh
+
+[33mcommit 25e87904f6dc4579b088fcc4b97261f4426d8fc6[m
+Merge: 6d588b9 8f80dbd
+Author: Demon Master <you@example.com>
+Date:   Thu Jun 23 13:22:36 2022 +0700
+
+    Merge remote-tracking branch 'origin/hieu'
+
+[33mcommit 8f80dbdc992b47f2864b7fa930ad04a0bdf3088f[m[33m ([m[1;31morigin/hieu[m[33m)[m
+Author: Demon Master <you@example.com>
+Date:   Thu Jun 23 13:21:52 2022 +0700
+
+    add delete tag and buttom delete
+
+[33mcommit 7444eeaaef351bf70f486d0b1acf80c119f54d80[m
+Merge: 6c9e0eb 6d588b9
+Author: Trong-khanh <tltkhanh1501@gmail.com>
+Date:   Thu Jun 23 13:21:51 2022 +0700
+
+    Merge branch 'main' of github.com:NuclearSherwin/neon into Khanh
+
+[33mcommit 6d208c9c23ce9ab62c2339b678324695c5b94685[m
+Merge: 6c9e0eb 6d588b9
+Author: Trong-khanh <tltkhanh1501@gmail.com>
+Date:   Thu Jun 23 13:21:36 2022 +0700
+
+    Merge branch 'main' of github.com:NuclearSherwin/neon
+
+[33mcommit 6d588b9a54eda4aec44da3a8e13ac0b828e0edd9[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Thu Jun 23 11:37:32 2022 +0700
+
+    update layout of homepage
+
+[33mcommit 130330749e7116652a3fe88fea501eff3dbe415d[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Thu Jun 23 11:18:06 2022 +0700
+
+    fix some bug and fix update profile for user
+
+[33mcommit 6c9e0ebd5a93d98d6ea687bca1769d87e1f08a34[m
+Author: Trong-khanh <tltkhanh1501@gmail.com>
+Date:   Thu Jun 23 10:31:46 2022 +0700
+
+    fix button
+
+[33mcommit c133954abb7708951a78013ce10aafe849a24874[m
+Merge: 12f45a2 b75e198
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Thu Jun 23 10:04:30 2022 +0700
+
+    Merge branch 'main' of github.com:NuclearSherwin/neon into phong
+
+[33mcommit b75e1982568f48f633bf134bbf379a1896f4e2e9[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Thu Jun 23 10:04:07 2022 +0700
+
+    add show list of people to homepage
+
+[33mcommit 12f45a285517d769219d653ca41a5161a33b27cf[m
+Merge: ddc94d7 e4866ee
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Thu Jun 23 09:24:13 2022 +0700
+
+    Merge branch 'main' of github.com:NuclearSherwin/neon into phong
+
+[33mcommit e4866ee9f8fe2f5b469fff79e8621a1fd418ea8d[m
+Merge: adbb621 1769094
+Author: Demon Master <you@example.com>
+Date:   Wed Jun 22 17:34:00 2022 +0700
+
+    Merge branch 'main' of https://github.com/NuclearSherwin/neon
+
+[33mcommit adbb6219d2eac885931b13b0c8737709b71de093[m
+Author: Demon Master <you@example.com>
+Date:   Wed Jun 22 17:30:14 2022 +0700
+
+    add update for Tag
+
+[33mcommit 176909449460e6ac4d14389561f8eee0dad87b25[m
+Merge: 12c08b8 2bfe4cf
+Author: Trong-khanh <tltkhanh1501@gmail.com>
+Date:   Wed Jun 22 17:27:28 2022 +0700
+
+    Merge branch 'Khanh'
+
+[33mcommit 2bfe4cfa610b66308e4e2ebf76c5219479fa3e7d[m
+Author: Trong-khanh <tltkhanh1501@gmail.com>
+Date:   Wed Jun 22 17:26:54 2022 +0700
+
+    done update
+
+[33mcommit ddc94d7c5a942f23b5bf7e0bd86ff1eb7f10e51c[m
+Merge: f03e3d0 d440a7d
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Wed Jun 22 16:48:52 2022 +0700
+
+    Merge branch 'main' of github.com:NuclearSherwin/neon into phong
+
+[33mcommit 56f474343da2cb44acbd1e559a3f873ebecab0cb[m
+Merge: 919ef14 d440a7d
+Author: Trong-khanh <tltkhanh1501@gmail.com>
+Date:   Wed Jun 22 16:45:21 2022 +0700
+
+    Merge branch 'main' of github.com:NuclearSherwin/neon into Khanh
+
+[33mcommit 12c08b80ba9fdd4047f3103453d4e09b5a3bece7[m
+Merge: 919ef14 d440a7d
+Author: Trong-khanh <tltkhanh1501@gmail.com>
+Date:   Wed Jun 22 16:45:00 2022 +0700
+
+    Merge branch 'main' of github.com:NuclearSherwin/neon
+
+[33mcommit d440a7db59675862bc1ddb01225899bbf4f1ba6d[m
+Author: Demon Master <you@example.com>
+Date:   Wed Jun 22 16:40:27 2022 +0700
+
+    Detail Tags to adding description feild and create detail funtion
+
+[33mcommit 919ef14889f7f504f2fd418c82463a43f5b720a6[m
+Author: Trong-khanh <tltkhanh1501@gmail.com>
+Date:   Wed Jun 22 16:28:16 2022 +0700
+
+    css to  show news page
+
+[33mcommit 435e783d6beffffa17079ee00cc522f97d48a575[m
+Author: Trong-khanh <tltkhanh1501@gmail.com>
+Date:   Wed Jun 22 15:02:56 2022 +0700
+
+    show form detail
+
+[33mcommit 07cacc4af815b4a6c83cc73ab56424410d337b06[m
+Author: Trong-khanh <tltkhanh1501@gmail.com>
+Date:   Wed Jun 22 13:06:53 2022 +0700
+
+    update create new: back to news page then create a news successfully
+
+[33mcommit 60ff08142f9f259fc8cf2cabafc8f5b40d30fe90[m
+Author: Trong-khanh <tltkhanh1501@gmail.com>
+Date:   Tue Jun 21 22:35:31 2022 +0700
+
+    done button and insert data to db succes
+
+[33mcommit 2ee9092d4a1cb97a89473ba7d16d513cf306ed22[m
+Merge: b80c422 0697cea
+Author: Trong-khanh <tltkhanh1501@gmail.com>
+Date:   Tue Jun 21 21:39:27 2022 +0700
+
+    Merge branch 'main' of github.com:NuclearSherwin/neon into Khanh
+
+[33mcommit b80c4227c8082ca3f23f62a9eac69cba7b74c14a[m
+Author: Trong-khanh <tltkhanh1501@gmail.com>
+Date:   Tue Jun 21 21:37:10 2022 +0700
+
+    form crete news
+
+[33mcommit f03e3d0729ee3dde5a3912f9da81ac9387d8a7f9[m
+Merge: d19c319 0697cea
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Tue Jun 21 14:21:24 2022 +0700
+
+    Merge branch 'main' of github.com:NuclearSherwin/neon into phong
+
+[33mcommit 0697ceaac5d05b5c04c85705aadddac0866105f2[m
+Author: Demon Master <you@example.com>
+Date:   Tue Jun 21 14:18:20 2022 +0700
+
+    detail Tags to adding description feild and create detail funtion
+
+[33mcommit 7e08cdf0ccd7e9cc32a38e72754f6a41231a4b16[m
+Merge: d89ca60 bd75f71
+Author: Trong-khanh <tltkhanh1501@gmail.com>
+Date:   Mon Jun 20 20:59:09 2022 +0700
+
+    Merge branch 'main' of github.com:NuclearSherwin/neon into Khanh
+
+[33mcommit d19c3191e04a53cc01e10ddf166c2cde421ffe6c[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Sun Jun 19 10:41:38 2022 +0700
+
+    add login when user are not login yet
+
+[33mcommit bd75f717aa990e26ee26afd68f749e680c169fe9[m
+Author: Demon Master <you@example.com>
+Date:   Sun Jun 19 10:13:00 2022 +0700
+
+    add construct Tag controller
+
+[33mcommit 89223a5f6119ad36a4068c5a18c85f7b8eaa47aa[m
+Author: Demon Master <you@example.com>
+Date:   Sun Jun 19 09:29:42 2022 +0700
+
+    add link neo tags
+
+[33mcommit 6a842a6c2656d42489b95689b68b2892d1f6e2bb[m
+Author: Demon Master <you@example.com>
+Date:   Sun Jun 19 09:11:21 2022 +0700
+
+    Tagcontroller ,display data for tags,view,entity for tag
+
+[33mcommit e13a943874e803d0a6d477b6e0b649185893c1c5[m
+Merge: 152ca1d f610b81
+Author: Demon Master <you@example.com>
+Date:   Sun Jun 19 09:00:29 2022 +0700
+
+    Merge branch 'main' of https://github.com/NuclearSherwin/neon into hieu
+
+[33mcommit d89ca604a7fe9c5fbca9ad17447c693f98467aa2[m
+Author: Trong-khanh <tltkhanh1501@gmail.com>
+Date:   Sat Jun 18 22:07:21 2022 +0700
+
+    Create
+
+[33mcommit c218a38e592593531984481aba4236fa512e7728[m
+Author: Trong-khanh <tltkhanh1501@gmail.com>
+Date:   Sat Jun 18 21:38:04 2022 +0700
+
+    show detail and
+
+[33mcommit f610b810a4cbd6300e819dd9c8496e28a3cbec92[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Sat Jun 18 21:24:13 2022 +0700
+
+    auto fetch id of user when create a new post
+
+[33mcommit 152ca1d954fe39c58b0b0646d6b915bd8bd73887[m
+Merge: 0f2209e dfbe1ad
+Author: Demon Master <you@example.com>
+Date:   Fri Jun 17 21:45:55 2022 +0700
+
+    Merge branch 'main' of https://github.com/NuclearSherwin/neon into hieu
+
+[33mcommit dfbe1ad2fe1661a29aa9a92330c211fd86281a42[m
+Author: Trong-khanh <tltkhanh1501@gmail.com>
+Date:   Fri Jun 17 17:20:00 2022 +0700
+
+    controller and show news
+
+[33mcommit 47aec6f3e03c30ee04b4bd4e4d6d1e5aa982b0ee[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Fri Jun 17 15:59:15 2022 +0700
+
+    fix confirm password
+
+[33mcommit eca17466e24760f3fb5b681618b00ff12171c0b1[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Thu Jun 16 21:46:59 2022 +0700
+
+    add wireframe for home page
+
+[33mcommit da13c29f0636258ae1678084afe0c8bb126dfed0[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Thu Jun 16 20:57:07 2022 +0700
+
+    display all posts to home page
+
+[33mcommit 077a67a13922af8be7b631e41526add3b854b123[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Thu Jun 16 20:47:44 2022 +0700
+
+    making access controller for who are already login can create new post
+
+[33mcommit 0fc70b0406cbf29b96ab5bb6937b7f7f491c890b[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Thu Jun 16 20:28:39 2022 +0700
+
+    edit set time now when user create a post
+
+[33mcommit 0f2209ef05c5b13c85b588c7fed89c08df726af6[m
+Merge: 013c822 515c861
+Author: Demon Master <you@example.com>
+Date:   Thu Jun 16 13:00:27 2022 +0700
+
+    Merge branch 'main' of https://github.com/NuclearSherwin/neon into hieu
+
+[33mcommit 515c8613ec907139bfa8cfb691b0804069184d27[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Thu Jun 16 12:58:17 2022 +0700
+
+    nothing just add commit for teamate to understand
+
+[33mcommit 013c822d61e50b669612209e055bdb97a629ac7b[m
+Merge: 1e41f94 830dc6b
+Author: Demon Master <you@example.com>
+Date:   Thu Jun 16 12:54:14 2022 +0700
+
+    Merge branch 'main' of https://github.com/NuclearSherwin/neon into hieu
+
+[33mcommit 830dc6b036dd74d3cdbd9bf1c25f8f062dd5bb37[m
+Merge: 129a810 048d366
+Author: Trong-khanh <tltkhanh1501@gmail.com>
+Date:   Thu Jun 16 12:49:41 2022 +0700
+
+    Merge remote-tracking branch 'origin/Khanh'
+
+[33mcommit 129a8106f6109a6698420da8dbb99268b19680d8[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Thu Jun 16 11:30:32 2022 +0700
+
+    done function delete post
+
+[33mcommit 0b918db4dd8e062be619f23ea2d1a95fd4fe4fc1[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Thu Jun 16 11:13:18 2022 +0700
+
+    done update function for post
+
+[33mcommit 2d79e17cd19b0d29da5bf5f82307f6ecdd3fee60[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Wed Jun 15 22:28:05 2022 +0700
+
+    edit haft UI for create POST
+
+[33mcommit 7ff3d1a7518b6813c4f536d7309ec516db94485f[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Wed Jun 15 21:42:08 2022 +0700
+
+    success detail for post
+
+[33mcommit 1e41f947fc293f34583309b2885c45d66fd86e67[m
+Merge: fbcb5af d629212
+Author: Demon Master <you@example.com>
+Date:   Wed Jun 15 15:21:16 2022 +0700
+
+    Merge branch 'main' of https://github.com/NuclearSherwin/neon into hieu
+
+[33mcommit ac683631c8647fe9318d4f6dd91dc457249b29c9[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Wed Jun 15 10:24:57 2022 +0700
+
+    success display information from post table to the view
+
+[33mcommit d6292127fce03cce7239c1e8d2104d3179e52bce[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Wed Jun 15 10:03:46 2022 +0700
+
+    create PostsController and Post entity to the database
+
+[33mcommit 048d3660ee09c6d4b37b89b4831a24a5998d2325[m
+Author: Trong-khanh <tltkhanh1501@gmail.com>
+Date:   Tue Jun 14 20:00:08 2022 +0700
+
+    create News table
+
+[33mcommit 7f78faa9a7ea2ca7a2a608e880b92b59829c6fa5[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Tue Jun 14 16:13:46 2022 +0700
+
+    add some attribute and constraints for update
+
+[33mcommit 6052d06723bb2da0c836d8f4a76a6f3ccac954a8[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Tue Jun 14 15:07:36 2022 +0700
+
+    add delete function
+
+[33mcommit c8ac8db2407fc3375993274b04fd7feb30e64278[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Tue Jun 14 14:24:53 2022 +0700
+
+    add new view for user profile
+
+[33mcommit e2589a92735bd369aa6040cbedf39edb34ab72ee[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Tue Jun 14 12:39:06 2022 +0700
+
+    fix error
+
+[33mcommit 6dae2b9c3d155eab899acd2ce6da3cbcca10e0fe[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Tue Jun 14 12:28:06 2022 +0700
+
+    editing user
+
+[33mcommit fbafe374b1befa83e5938d4e5feb8dbcc814a59f[m
+Author: Phong Mai <phongspacenasa@gmail.com>
+Date:   Mon Jun 13 22:50:44 2022 +0700
+
+    modify for u
