@@ -169,7 +169,7 @@ class NewsController extends AbstractController
 
 
 
-//delete function
+    //delete function
 
     /**
      * @Route("/home/news/delete/{id}", name="news_delete", methods={"GET"})

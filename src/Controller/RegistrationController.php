@@ -11,8 +11,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationController extends AbstractController
 {
@@ -32,7 +30,7 @@ class RegistrationController extends AbstractController
 
             // encode the plain password
             $user->setPassword(
-            $userPasswordHasher->hashPassword(
+                $userPasswordHasher->hashPassword(
                     $user,
                     $form->get('plainPassword')->getData()
                 )
@@ -40,7 +38,7 @@ class RegistrationController extends AbstractController
 
             // add profile image from device of user
             $profileImg = $form->get('profileImg')->getData();
-            if($profileImg) {
+            if ($profileImg) {
                 $newFileName = uniqid() . '.' . $profileImg->guessExtension();
 
                 try {

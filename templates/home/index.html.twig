@@ -7,6 +7,7 @@
         ::-webkit-scrollbar {
             display: none;
         }
+
         .all-wrapper {
             margin: 1em auto;
             width: 98%;
@@ -25,6 +26,7 @@
             border-radius: 5px;
 
         }
+
         .news-wrapper {
             height: 100vh;
             width: 250px;
@@ -59,7 +61,8 @@
             <div class="status-wrapper d-flex justify-content-center">
                 <div class="mr-auto ml-auto position-relative d-flex justify-content-center">
                     <div class="ml-auto mr-auto pt-4 pr-4 pb-4 pl-4" style="background-color: #EFC050;">
-                        <a class="text-center text-black" href="{{ path('create_post') }}">Send everyone your status today
+                        <a class="text-center text-black" href="{{ path('create_post') }}">Send everyone your status
+                            today
                             <span class="text-success">
                     <i class="fa-solid fa-paper-plane"></i>
                 </span>
@@ -108,6 +111,9 @@
                                                         class="fa fa-thumbs-o-up"></i> Like
                                             </button>
                                             <span class="pull-right text-muted">127 likes - 3 comments</span>
+                                            <span class="pull-right text-muted">
+                                                <strong> #{{ post.tag.name }}</strong>
+                                            </span>
                                         </div>
                                         <div class="box-footer box-comments mt-4 mb-4">
                                         </div>
@@ -132,10 +138,12 @@
         {# tag #}
         <div class="news-wrapper text-center">
             <div class="news">
-                <a href="{{ path('neon_news') }}" class="text-black">News to day <i class="fa-solid fa-newspaper"></i></a>
+                <a href="{{ path('neon_news') }}" class="text-black">News to day <i
+                            class="fa-solid fa-newspaper"></i></a>
             </div>
             <div class="tags">
-                <a href="{{ path('neon_tags') }}" class="text-danger">Hot trend topics <i class="fa-solid fa-hashtag"></i></a>
+                <a href="{{ path('neon_tags') }}" class="text-danger">Hot trend topics <i
+                            class="fa-solid fa-hashtag"></i></a>
             </div>
         </div>
     </div>
