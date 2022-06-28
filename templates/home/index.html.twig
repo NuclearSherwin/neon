@@ -52,12 +52,6 @@
 
         {# new #}
         <div class="users-wrapper">
-            <div class="people-wrapper text-center mb-4">
-                <a href="#" class="text-black">
-                    People
-                    <i class="fa-solid fa-user-group"></i>
-                </a>
-            </div>
             <div class="status-wrapper d-flex justify-content-center">
                 <div class="mr-auto ml-auto position-relative d-flex justify-content-center">
                     <div class="ml-auto mr-auto pt-4 pr-4 pb-4 pl-4" style="background-color: #EFC050;">
@@ -70,6 +64,33 @@
                     </div>
                 </div>
             </div>
+            <div class="people-wrapper text-center mb-4 mt-4">
+                <a href="#" class="text-black">
+                    Other people
+                    <i class="fa-solid fa-user-group"></i>
+                </a>
+                {% if app.user %}
+                    <ul class="list-group list-group-light overflow-hidden mt-4">
+                        {% for user in users %}
+                            {% if user.profileImg != app.user.profileImg
+                                and user.name != app.user.name and user.email != app.user.email %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ms-3 d-flex align-content-center">
+                                            <img src="{{ user.profileImg }}" alt="Avatar"
+                                                 style="width: 35px; height: 35px"
+                                                 class="rounded-circle mr-2"/>
+                                            <p class="fw-bold mb-0 mt-2" style="font-size: 14px;">{{ user.name }}</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+
         </div>
 
         <div class="post-wrapper">
@@ -137,12 +158,12 @@
 
         {# tag #}
         <div class="news-wrapper text-center">
-            <div class="news">
-                <a href="{{ path('neon_news') }}" class="text-black">News to day <i
+            <div class="news bg-dark bg-opacity-50">
+                <a href="{{ path('neon_news') }}" class="text-warning">News to day <i
                             class="fa-solid fa-newspaper"></i></a>
             </div>
-            <div class="tags">
-                <a href="{{ path('neon_tags') }}" class="text-danger">Hot trend topics <i
+            <div class="tags bg-info bg-opacity-75">
+                <a href="{{ path('neon_tags') }}" class="text-danger text-opacity-50">Hot trend topics <i
                             class="fa-solid fa-hashtag"></i></a>
             </div>
         </div>

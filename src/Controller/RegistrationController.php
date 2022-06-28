@@ -43,7 +43,7 @@ class RegistrationController extends AbstractController
 
                 try {
                     $profileImg->move(
-                        $this->getParameter('kernel.project_dir') . '/public/uploads',
+                        $this->getParameter('kernel.project_dir') . '/public/uploads/usersImg',
                         $newFileName
                     );
                 } catch (FileException $e) {
@@ -51,7 +51,7 @@ class RegistrationController extends AbstractController
                 }
 
                 //set file path when received the picture
-                $newUser->setProfileImg('/uploads/' . $newFileName);
+                $newUser->setProfileImg('/uploads/usersImg/' . $newFileName);
             }
 
 
