@@ -33,7 +33,6 @@ class TagsController extends AbstractController
         ]);
     }
 
-
     /**
      * @Route("/tags/detail/{id}", name="detail_tag")
      */
@@ -58,7 +57,7 @@ class TagsController extends AbstractController
         if ($this->saveChanges($form, $request, $tag)) {
             $this->addFlash(
                 'notice',
-                'Todo Added'
+                'Tags Added'
             );
 
             return $this->redirectToRoute('neon_tags');
@@ -95,7 +94,7 @@ class TagsController extends AbstractController
         if ($this->saveChanges($form, $request, $tag)) {
             $this->addFlash(
                 'notice',
-                'Todo Edited'
+                'Tags Edited'
             );
             return $this->redirectToRoute('neon_tags');
         }

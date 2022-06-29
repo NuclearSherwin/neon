@@ -24,9 +24,11 @@
                     <th scope="row">{{ tag.id }}</th>
                     <th scope="row">{{ tag.name }}</th>
                     <th scope="row">{{ tag.descriptions }}</th>
-                    <th scope="row"><a href="{{ path('detail_tag',{'id': tag.id}) }}">Detail</a></th>
-                    <th scope="row"><a href="{{ path('tag_update',{'id': tag.id}) }}">Update</a></th>
-                    <th scope="row"><a onclick="return confirm('are you sure to delete?')"
+                    <th scope="row"><a class="btn btn-info" href="{{ path('detail_tag',{'id': tag.id}) }}">Detail</a>
+                    </th>
+                    <th scope="row"><a class="btn btn-warning" href="{{ path('tag_update',{'id': tag.id}) }}">Update</a>
+                    </th>
+                    <th scope="row"><a class="btn btn-danger " onclick="return confirm('are you sure to delete?')"
                                        href="{{ path('tag_delete',{'id': tag.id}) }}">Delete</a></th>
 
                 </tr>
