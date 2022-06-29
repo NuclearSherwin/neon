@@ -24,6 +24,11 @@
                 {{ form_label(form.description) }}
                 {{ form_widget(form.description,{'attr':{'class':'form-control'}})}}
             </div>
+            {#       Form tag  #}
+            <div class="form-group">
+                {{ form_label(form.tag) }}
+                {{ form_widget(form.tag,{'attr':{'class':'form-control'}}) }}
+            </div>
 
             <div class="form-group">
                 <button class="btn btn-info mt-2 text-white">Submit</button>

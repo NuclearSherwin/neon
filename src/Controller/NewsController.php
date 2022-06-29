@@ -45,27 +45,29 @@ class NewsController extends AbstractController
         ]);
     }
 
-    // create news function
-
+    // create news
     /**
      * @Route("/news/create", name="news_create", methods={"GET","POST"})
      */
     public function create(Request $request)
     {
+        //create a news
         $Cnews = new News();
         $form = $this->createForm(NewsType::class, $Cnews);
         $form->handleRequest($request);
+
         // if press submit putting data to database
         if (!$form->isSubmitted() || !$form->isValid()) {
             return $this->render('news/create.html.twig', [
                 'form' => $form->createView()
             ]);
         }
-
+        //get data form
         $News = $form->getData();
         $imgpath = $form->get('img_path')->getData();
 
         if (!$imgpath) {
+            // save old img if not change and back to home
             $em = $this->getDoctrine()->getManager();
             $em->persist($Cnews);
             $em->flush();
@@ -76,7 +78,13 @@ class NewsController extends AbstractController
             return $this->redirectToRoute('neon_news');
         }
 
+
+        //when user create many same img name, uniquid method to genarate random id
+        //guessextention will format backlile img
         $newFile = uniqid() . '.' . $imgpath->guessExtension();
+
+
+
 
         try {
             $imgpath->move(
@@ -91,10 +99,10 @@ class NewsController extends AbstractController
 
         $News->setImgPath('/news/' . $newFile);
 
-
+        // get data from database
         $em = $this->getDoctrine()->getManager();
 
-
+        // update database then create news
         $em->persist($Cnews);
         $em->flush();
 
@@ -102,8 +110,6 @@ class NewsController extends AbstractController
 
         //back to news page then create a news successfully
         return $this->redirectToRoute('neon_news');
-
-
     }
 
 
